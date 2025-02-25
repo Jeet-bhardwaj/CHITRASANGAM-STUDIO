@@ -53,8 +53,23 @@
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100%) rotate(0deg);
+  }
+  to {
+    transform: translateY(100vh) rotate(20deg);
+  }
 }
 
 .animate-gradient-x {
@@ -81,6 +96,11 @@
   box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
+.falling-star {
+  position: absolute;
+  animation: fall 2s linear forwards;
+}
+
 /* Randomize star twinkle animation */
 .star:nth-child(2n) {
   animation-delay: 0.5s;
@@ -90,4 +110,19 @@
 }
 .star:nth-child(4n) {
   animation-delay: 1.5s;
+}
+
+.animate-twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+/* Randomize twinkle animation */
+.animate-twinkle:nth-child(2n) {
+  animation-delay: 1s;
+}
+.animate-twinkle:nth-child(3n) {
+  animation-delay: 2s;
+}
+.animate-twinkle:nth-child(4n) {
+  animation-delay: 3s;
 }
