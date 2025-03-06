@@ -7,10 +7,6 @@ const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true); // State to manage navbar visibility
     const [lastScrollY, setLastScrollY] = useState(0); // Track last scroll position
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!dropdownOpen);
-    };
-
     const handleScroll = () => {
         if (typeof window !== 'undefined') {
             if (window.scrollY > lastScrollY) {
@@ -29,6 +25,18 @@ const Navbar = () => {
         };
     }, [lastScrollY]);
 
+    const handleDropdownToggle = () => {
+        setDropdownOpen(true); // Open dropdown
+    };
+
+    const handleDropdownClose = () => {
+        setDropdownOpen(true); // Close dropdown
+    };
+
+    const handleDropdownItemClick = () => {
+        setDropdownOpen(false); // Hide dropdown after clicking an item
+    };
+
     return (
         <nav className={`${styles.navbar} ${isVisible ? styles.visible : styles.hidden} fixed w-full z-50 flex justify-between items-center px-6 md:px-8 py-2`}>
             <div className="text-white">
@@ -38,16 +46,22 @@ const Navbar = () => {
             </div>
             <div className="hidden md:flex space-x-8 text-white uppercase">
                 <Link to="/" className={styles.navbarLink}>Home</Link>
-                <div className="relative">
-                    <button onClick={toggleDropdown} className={styles.navbarLink}>
+                <div className="relative"
+                     onMouseEnter={handleDropdownToggle} // Show dropdown on hover
+                     onMouseLeave={handleDropdownClose} // Hide dropdown when not hovering
+                >
+                    <button className={styles.navbarLink}>
                         PORTFOLIO
                     </button>
                     {dropdownOpen && ( // Dropdown menu
-                        <div className={styles.dropdownMenu}>
-                            <Link to="/wedding" className={styles.dropdownItem}>Wedding</Link>
-                            <Link to="/marriage-anniversary" className={styles.dropdownItem}>Marriage Anniversary</Link>
-                            <Link to="/birthday" className={styles.dropdownItem}>Birthday</Link>
-                            <Link to="/maternity" className={styles.dropdownItem}>Maternity</Link>
+                        <div className={styles.dropdownMenu}
+                             onMouseEnter={handleDropdownToggle} // Keep dropdown open when hovering over it
+                             onMouseLeave={handleDropdownClose} // Close dropdown when not hovering
+                        >
+                            <Link to="/wedding" className={styles.dropdownItem} onClick={handleDropdownItemClick}>Wedding</Link>
+                            <Link to="/marriage-anniversary" className={styles.dropdownItem} onClick={handleDropdownItemClick}>Marriage Anniversary</Link>
+                            <Link to="/birthday" className={styles.dropdownItem} onClick={handleDropdownItemClick}>Birthday</Link>
+                            <Link to="/maternity" className={styles.dropdownItem} onClick={handleDropdownItemClick}>Maternity</Link>
                         </div>
                     )}
                 </div>

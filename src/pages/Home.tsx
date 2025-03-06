@@ -27,7 +27,7 @@ function App() {
               COLORFUL | AUTHENTIC | CREATIVE
             </h1>
             <p className={`${styles.heroSubtitle}`}>
-              a wedding & portrait photographer
+            गणपति बप्पा मोरया
             </p>
           </div>
         </header>
