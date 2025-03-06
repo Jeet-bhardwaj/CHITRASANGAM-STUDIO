@@ -1,19 +1,39 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Navbar.module.css'; // Import the CSS module
 
 const Navbar = () => {
+    const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
     return (
-        <><nav className="fixed w-full z-50 flex justify-between items-center px-8 py-4">
+        <nav className={`${styles.navbar} fixed w-full z-50 flex justify-between items-center px-6 md:px-8 py-4`}>
             <div className="text-white">
-                <h1 className="text-3xl font-serif">CHITRASANGAM</h1>
-                <h2 className="text-2xl font-serif">STUDIO</h2>
+                <h1 className={`${styles.navbarTitle}`}>CHITRASANGAM</h1>
+                <h2 className={`${styles.navbarSubtitle}`}>STUDIO</h2>
                 <p className="font-script text-xl">photography</p>
             </div>
             <div className="hidden md:flex space-x-8 text-white uppercase">
-                <Link to="/" className="hover:text-gray-300">Home</Link>
-                <Link to="/about" className="hover:text-gray-300">About</Link>
-                <Link to="/pricing" className="hover:text-gray-300">Services</Link>
-                <Link to="/portfolio" className="hover:text-gray-300">Portfolio</Link>
-                <Link to="/faq" className="hover:text-gray-300">FAQ</Link>
+                <Link to="/" className={styles.navbarLink}>Home</Link>
+                <div className="relative">
+                    <button onClick={toggleDropdown} className={styles.navbarLink}>
+                        Services
+                    </button>
+                    {dropdownOpen && ( // Dropdown menu
+                        <div className={styles.dropdownMenu}>
+                            <Link to="/wedding" className={styles.dropdownItem}>Wedding</Link>
+                            <Link to="/marriage-anniversary" className={styles.dropdownItem}>Marriage Anniversary</Link>
+                            <Link to="/birthday" className={styles.dropdownItem}>Birthday</Link>
+                            <Link to="/maternity" className={styles.dropdownItem}>Maternity</Link>
+                        </div>
+                    )}
+                </div>
+                <Link to="/about" className={styles.navbarLink}>About</Link>
+                <Link to="/portfolio" className={styles.navbarLink}>Portfolio</Link>
+                <Link to="/faq" className={styles.navbarLink}>FAQ</Link>
             </div>
             <div className="flex items-center space-x-6">
                 <a href="#" className="text-white hover:text-gray-300">
@@ -29,7 +49,7 @@ const Navbar = () => {
                     CONTACT
                 </button>
             </div>
-        </nav></>
+        </nav>
     )
 }
 

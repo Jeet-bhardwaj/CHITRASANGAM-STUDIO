@@ -1,0 +1,61 @@
+.navbar {
+    /* background-color: rgba(247, 0, 0, 0.425); Semi-transparent background */
+    /* backdrop-filter: blur(10px); Blur effect for background */
+}
+
+.navbarTitle {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.navbarSubtitle {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.navbarLink {
+    color: white;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbarLink:hover {
+    color: #d1d5db; /* Light gray on hover */
+}
+
+.dropdownMenu {
+    position: absolute;
+    background-color: #1f2937; /* Dark background for dropdown */
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Ensure dropdown is above other elements */
+    margin-top: 0.5rem; /* Space between button and dropdown */
+    width: 200px; /* Set a width for the dropdown */
+}
+
+.dropdownItem {
+    padding: 0.5rem 1rem;
+    color: white;
+    transition: background-color 0.3s ease;
+    display: block; /* Ensure items are block elements */
+}
+
+.dropdownItem:hover {
+    background-color: #374151; /* Darker gray on hover */
+}
+
+/* Responsive styles for mobile view */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .navbarLink {
+        padding: 10px 0; /* Add padding for better touch targets */
+    }
+
+    .dropdownMenu {
+        width: 100%; /* Full width for dropdown on mobile */
+    }
+} 
