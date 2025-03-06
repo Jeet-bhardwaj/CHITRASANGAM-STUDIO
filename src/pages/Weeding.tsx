@@ -3,10 +3,16 @@ import styles from './Weeding.module.css';
 const Weeding: React.FC = () => {
     return (
         <div className={styles.container}>
+
+
+            {/* BACKGROUND VIDEO I Dont Know How its working but it is working */}
             <video autoPlay loop muted className={styles.backgroundVideo}>
                 <source src="/Images & Videos/CenemeticShort/WhatsApp Video 2025-02-26 at 11.54.04_78da36ac.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
+
+
+            {/* GALLERY */}
             <div className={styles.gallery}>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_93tVsfPl3-HSLIeNbavpBWZ8wNpMry8GX7z7whlpU1L1967XfeOvzjo&s" alt="Indian Wedding" className={styles.image} />
                 <img src="https://t3.ftcdn.net/jpg/07/67/15/78/360_F_767157870_nFwgBHuxZusnCwePm4plBYmir6e5Qh4A.jpg" alt="Indian Wedding" className={styles.image} />
@@ -18,8 +24,11 @@ const Weeding: React.FC = () => {
                 <img src="https://www.brides.com/thmb/JgD0sfveJXGR6Vwh-c2Yriw6Z0c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Main-Hindu-Wedding-Traditions-Stephanie-Velez-6cf14a902ea947c09dc0722d29a9224a.jpg" alt="Wedding Celebration" className={styles.image} />
                 <img src="https://media.istockphoto.com/id/866987706/photo/indian-wedding-hands.jpg?s=612x612&w=0&k=20&c=6L-u9qhFPv9MjDnF4UK4AqjVbDKM4_8Xad72IHhwPZE=" alt="Wedding Celebration" className={styles.image} />
                 <img src="https://img.freepik.com/free-photo/groom-putting-ring-bride-s-finger_1157-338.jpg" alt="Wedding Celebration" className={styles.image} />
-                {/* More images */}
+                
             </div>
+
+
+            {/* TESTIMONIAL */}
             <blockquote className={styles.quote}>
                 "Katie isn't just a talented photographer, she has a wealth of knowledge about the wedding industry and has a knack for making couples feel comfortable. She's the coolest person, and my favorite part of our wedding (don't tell my husband)." 
                 <footer>- Zack</footer>
