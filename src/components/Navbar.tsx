@@ -25,6 +25,21 @@ const Navbar = () => {
         };
     }, [lastScrollY]);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const dropdown = document.getElementById('dropdownMenu');
+            const button = document.getElementById('portfolioButton');
+            if (dropdown && button && !dropdown.contains(event.target as Node) && !button.contains(event.target as Node)) {
+                setDropdownOpen(false); // Close dropdown if clicked outside
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const handleDropdownToggle = () => {
         setDropdownOpen(true); // Open dropdown
     };
@@ -50,11 +65,11 @@ const Navbar = () => {
                      onMouseEnter={handleDropdownToggle} // Show dropdown on hover
                      onMouseLeave={handleDropdownClose} // Hide dropdown when not hovering
                 >
-                    <button className={styles.navbarLink}>
+                    <button id="portfolioButton" className={styles.navbarLink}>
                         PORTFOLIO
                     </button>
                     {dropdownOpen && ( // Dropdown menu
-                        <div className={styles.dropdownMenu}
+                        <div id="dropdownMenu" className={styles.dropdownMenu}
                              onMouseEnter={handleDropdownToggle} // Keep dropdown open when hovering over it
                              onMouseLeave={handleDropdownClose} // Close dropdown when not hovering
                         >
