@@ -1,17 +1,12 @@
 
 import { Camera, Clock, Mail, MapPin, Phone, Star } from 'lucide-react';
-// import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import styles from './Home.module.css';
 import Weeding from './Weeding';
-// import { BackgroundBeams } from "./components/ui/background-beams";
 
 function App() {
   return (
     <div className="min-h-screen w-full bg-black relative overflow-hidden">
-      {/* Background Beams Effect */}
-      {/* <BackgroundBeams className="absolute inset-0" /> */}
-      
+   
       <div className="relative z-40">
         {/* <Navbar /> */}
 

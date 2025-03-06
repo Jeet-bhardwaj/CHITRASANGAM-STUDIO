@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './Weeding.module.css';
 const Weeding: React.FC = () => {
     return (
-        
         <div className={styles.container}>
-            <h1 className={styles.title}>
-                YOUR WEDDING DAY DESERVES A PHOTOGRAPHER WHO'S AS <span className={styles.excited}>EXCITED</span> AS YOU ARE!
-            </h1>
+            <video autoPlay loop muted className={styles.backgroundVideo}>
+                <source src="/Images & Videos/CenemeticShort/WhatsApp Video 2025-02-26 at 11.54.04_78da36ac.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
             <div className={styles.gallery}>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_93tVsfPl3-HSLIeNbavpBWZ8wNpMry8GX7z7whlpU1L1967XfeOvzjo&s" alt="Indian Wedding" className={styles.image} />
                 <img src="https://t3.ftcdn.net/jpg/07/67/15/78/360_F_767157870_nFwgBHuxZusnCwePm4plBYmir6e5Qh4A.jpg" alt="Indian Wedding" className={styles.image} />

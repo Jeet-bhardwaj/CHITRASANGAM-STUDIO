@@ -88,3 +88,15 @@
   margin-top: 10px;
   font-weight: bold;
 }
+
+.backgroundVideo {
+    position: fixed; /* Fixed positioning for full screen */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    object-fit: cover; /* Cover the entire viewport */
+    z-index: -1; /* Send the video behind other content */
+    border: none; /* Remove any border/frame */
+    overflow: hidden; /* Ensure no overflow */
+}
