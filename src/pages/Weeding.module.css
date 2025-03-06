@@ -1,0 +1,90 @@
+/* src/components/Weeding.module.css */
+.container {
+    padding: 40px;
+    background-color: #f0f4f8; /* Light background for contrast */
+    text-align: center;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.excited {
+    color: #ff4081; /* Excited color */
+    font-weight: bold;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between images */
+    margin-bottom: 20px;
+}
+
+.image {
+    width: 100%; /* Full width */
+    height: auto;
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s; /* Smooth hover effect */
+}
+
+.image:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.quote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #ff4081; /* Decorative left border */
+    padding-left: 20px;
+    margin: 20px auto;
+    max-width: 600px; /* Limit width */
+}
+
+.weeding-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.weeding-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #e63946; /* Change to your desired highlight color */
+  font-weight: bold;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.grid-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.testimonial {
+  background-color: #f1faee; /* Light background for the testimonial */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.testimonial-author {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}

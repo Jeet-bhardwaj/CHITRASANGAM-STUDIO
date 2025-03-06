@@ -1,8 +1,9 @@
 
 import { Camera, Clock, Mail, MapPin, Phone, Star } from 'lucide-react';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styles from './Home.module.css';
+import Weeding from './Weeding';
 // import { BackgroundBeams } from "./components/ui/background-beams";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       {/* <BackgroundBeams className="absolute inset-0" /> */}
       
       <div className="relative z-40">
-        <Navbar />
+        {/* <Navbar /> */}
 
         {/* Hero Section */}
         <header className={`${styles.header} relative h-screen overflow-hidden`}>
@@ -35,6 +36,7 @@ function App() {
             </p>
           </div>
         </header>
+        <Weeding />
 
         {/* Services Section */}
         <section id="services" className="py-20 px-6">
@@ -120,7 +122,6 @@ function App() {
         </section>
 
         {/* Footer */}
-        <Footer />
       </div>
     </div>
   );

@@ -1,26 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css'; // Import the CSS module
 
 const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+    const [isVisible, setIsVisible] = useState(true); // State to manage navbar visibility
+    const [lastScrollY, setLastScrollY] = useState(0); // Track last scroll position
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
+    const handleScroll = () => {
+        if (typeof window !== 'undefined') {
+            if (window.scrollY > lastScrollY) {
+                setIsVisible(false); // Scrolling down
+            } else {
+                setIsVisible(true); // Scrolling up
+            }
+            setLastScrollY(window.scrollY); // Update last scroll position
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <nav className={`${styles.navbar} fixed w-full z-50 flex justify-between items-center px-6 md:px-8 py-4`}>
+        <nav className={`${styles.navbar} ${isVisible ? styles.visible : styles.hidden} fixed w-full z-50 flex justify-between items-center px-6 md:px-8 py-2`}>
             <div className="text-white">
                 <h1 className={`${styles.navbarTitle}`}>CHITRASANGAM</h1>
                 <h2 className={`${styles.navbarSubtitle}`}>STUDIO</h2>
-                <p className="font-script text-xl">photography</p>
+                <p className={`${styles.photography} font-script text-xl`}>photography</p>
             </div>
             <div className="hidden md:flex space-x-8 text-white uppercase">
                 <Link to="/" className={styles.navbarLink}>Home</Link>
                 <div className="relative">
                     <button onClick={toggleDropdown} className={styles.navbarLink}>
-                        Services
+                        PORTFOLIO
                     </button>
                     {dropdownOpen && ( // Dropdown menu
                         <div className={styles.dropdownMenu}>
@@ -32,7 +52,7 @@ const Navbar = () => {
                     )}
                 </div>
                 <Link to="/about" className={styles.navbarLink}>About</Link>
-                <Link to="/portfolio" className={styles.navbarLink}>Portfolio</Link>
+                {/* <Link to="/" className={styles.navbarLink}></Link> */}
                 <Link to="/faq" className={styles.navbarLink}>FAQ</Link>
             </div>
             <div className="flex items-center space-x-6">
