@@ -113,10 +113,17 @@ const Navbar = () => {
         <nav className={`${styles.navbar} fixed top-0 left-0 w-full z-50`}>
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo and Brand */}
-                <div className="text-white">
-                    <h1 className="text-2xl font-bold">CHITRASANGAM</h1>
-                    <h2 className="text-xl text-pink-500">STUDIO</h2>
-                    <p className="text-lg text-pink-500 italic">photography</p>
+                <div className="text-white flex items-center">
+                    <img 
+                        src="/Images & Videos/logo.png" 
+                        alt="Chitrasangam Studio Logo" 
+                        className="mr-3 h-12 w-auto"
+                    />
+                    <div>
+                        <h1 className="text-2xl font-bold">CHITRASANGAM</h1>
+                        <h2 className="text-xl text-pink-500">STUDIO</h2>
+                        <p className="text-lg text-pink-500 italic">photography</p>
+                    </div>
                 </div>
 
                 {/* Desktop Navigation - Hidden on mobile */}
