@@ -4,14 +4,29 @@ import styles from './Navbar.module.css';
 import { ChevronDown, Camera, Calendar, Cake, Baby } from 'lucide-react';
 import Hamburger from './Hamburger';
 
+/**
+ * Navbar component that provides navigation for the entire application
+ * Features responsive design with different behavior for desktop and mobile
+ * Includes dropdown menus, scroll hiding behavior, and mobile menu toggle
+ */
 const Navbar = () => {
+    // State for desktop dropdown menu (Portfolio items)
     const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+    // State for mobile dropdown menu (Portfolio items on mobile)
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+    // Controls navbar visibility when scrolling
     const [isVisible, setIsVisible] = useState(true);
+    // Tracks scroll position to determine visibility
     const [lastScrollY, setLastScrollY] = useState(0);
+    // Controls whether the mobile menu is expanded
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    // Hook for programmatic navigation
     const navigate = useNavigate();
 
+    /**
+     * Handles scroll behavior to hide/show the navbar
+     * Shows navbar when scrolling up, hides when scrolling down
+     */
     const handleScroll = () => {
         if (typeof window !== 'undefined') {
             if (window.scrollY > lastScrollY) {
@@ -23,6 +38,7 @@ const Navbar = () => {
         }
     };
 
+    // Set up scroll event listener to handle navbar visibility
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -30,6 +46,10 @@ const Navbar = () => {
         };
     }, [lastScrollY]);
 
+    /**
+     * Detects clicks outside the desktop dropdown menu to close it
+     * Only affects desktop menu behavior
+     */
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const dropdown = document.getElementById('desktopDropdownMenu');
@@ -45,7 +65,10 @@ const Navbar = () => {
         };
     }, []);
 
-    // Prevent body scrolling when mobile menu is open
+    /**
+     * Disables body scrolling when mobile menu is open
+     * Prevents background content from scrolling when interacting with mobile menu
+     */
     useEffect(() => {
         if (mobileMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -57,36 +80,50 @@ const Navbar = () => {
         };
     }, [mobileMenuOpen]);
 
+    /**
+     * Toggles the mobile menu open/closed state
+     * Also resets the mobile dropdown when toggling
+     */
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
-        // Reset mobile dropdown when toggling mobile menu
+        // Reset mobile dropdown when toggling mobile menu to prevent nested open menus
         setMobileDropdownOpen(false);
     };
 
+    /**
+     * Toggles the mobile dropdown menu for portfolio items
+     */
     const toggleMobileDropdown = () => {
         setMobileDropdownOpen(!mobileDropdownOpen);
     };
 
-    // Navigation function for mobile menu items
+    /**
+     * Handles navigation for mobile menu items
+     * Navigates to the specified path and closes all menus
+     * @param path - The route path to navigate to
+     */
     const navigateTo = (path: string) => {
         navigate(path);
-        // Close all menus after navigation
+        // Close all menus after navigation for clean UI
         setMobileMenuOpen(false);
         setMobileDropdownOpen(false);
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-70 z-50">
+        <nav className={`${styles.navbar} fixed top-0 left-0 w-full bg-black bg-opacity-70 z-50`}>
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                {/* Logo and Brand */}
                 <div className="text-white">
                     <h1 className="text-2xl font-bold">CHITRASANGAM</h1>
                     <h2 className="text-xl text-pink-500">STUDIO</h2>
                     <p className="text-lg text-pink-500 italic">photography</p>
                 </div>
 
-                {/* Desktop Menu */}
+                {/* Desktop Navigation - Hidden on mobile */}
                 <div className="hidden md:flex items-center space-x-6">
                     <Link to="/" className="text-white uppercase hover:text-pink-500">Home</Link>
+                    
+                    {/* Desktop Dropdown Menu Container */}
                     <div className="relative">
                         <button 
                             id="portfolioButton"
@@ -98,6 +135,7 @@ const Navbar = () => {
                             <ChevronDown className="ml-1 w-4 h-4" />
                         </button>
                         
+                        {/* Desktop Dropdown Menu Items - Shown on hover */}
                         {desktopDropdownOpen && (
                             <div 
                                 id="desktopDropdownMenu"
@@ -124,9 +162,11 @@ const Navbar = () => {
                             </div>
                         )}
                     </div>
+                    
                     <Link to="/about" className="text-white uppercase hover:text-pink-500">About</Link>
                     <Link to="/faq" className="text-white uppercase hover:text-pink-500">FAQ</Link>
                     
+                    {/* Social Media Icons and Contact Button */}
                     <div className="flex items-center space-x-4">
                         <a href="#" className="text-white hover:text-pink-500">
                             <i className="fab fa-facebook-f"></i>
@@ -143,7 +183,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Menu Toggle Button - Only visible on mobile */}
                 <button 
                     className="block md:hidden text-white"
                     onClick={toggleMobileMenu}
@@ -161,10 +201,11 @@ const Navbar = () => {
                 </button>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu - Full screen overlay */}
             {mobileMenuOpen && (
                 <div className="md:hidden bg-black bg-opacity-95 absolute top-full left-0 w-full z-50">
                     <div className="px-4 py-8 space-y-4">
+                        {/* Mobile Navigation Items */}
                         <button 
                             className="block text-white text-lg uppercase w-full text-left"
                             onClick={() => navigateTo('/')}
@@ -172,6 +213,7 @@ const Navbar = () => {
                             Home
                         </button>
                         
+                        {/* Mobile Dropdown Container */}
                         <div>
                             <button 
                                 className="text-white text-lg uppercase flex items-center w-full"
@@ -181,6 +223,7 @@ const Navbar = () => {
                                 <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
                             
+                            {/* Mobile Dropdown Items - Toggled by clicking */}
                             {mobileDropdownOpen && (
                                 <div className="ml-4 mt-2 space-y-2">
                                     <button 
@@ -228,6 +271,7 @@ const Navbar = () => {
                             FAQ
                         </button>
                         
+                        {/* Mobile Social Media Icons */}
                         <div className="flex items-center space-x-4 pt-2">
                             <a href="#" className="text-white text-xl hover:text-pink-500">
                                 <i className="fab fa-facebook-f"></i>
@@ -240,6 +284,7 @@ const Navbar = () => {
                             </a>
                         </div>
                         
+                        {/* Mobile Contact Button */}
                         <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 w-full">
                             CONTACT
                         </button>
