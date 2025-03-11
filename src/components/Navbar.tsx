@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { ChevronDown, Camera, Calendar, Cake, Baby } from 'lucide-react';
 import Hamburger from './Hamburger';
 
 const Navbar = () => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleScroll = () => {
         if (typeof window !== 'undefined') {
@@ -30,10 +32,10 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            const dropdown = document.getElementById('dropdownMenu');
+            const dropdown = document.getElementById('desktopDropdownMenu');
             const button = document.getElementById('portfolioButton');
             if (dropdown && button && !dropdown.contains(event.target as Node) && !button.contains(event.target as Node)) {
-                setDropdownOpen(false);
+                setDesktopDropdownOpen(false);
             }
         };
 
@@ -57,19 +59,20 @@ const Navbar = () => {
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
+        // Reset mobile dropdown when toggling mobile menu
+        setMobileDropdownOpen(false);
     };
 
-    const handleDropdownToggle = () => {
-        setDropdownOpen(true);
+    const toggleMobileDropdown = () => {
+        setMobileDropdownOpen(!mobileDropdownOpen);
     };
 
-    const handleDropdownClose = () => {
-        setDropdownOpen(true);
-    };
-
-    const handleDropdownItemClick = () => {
-        setDropdownOpen(false);
-        setMobileMenuOpen(true);
+    // Navigation function for mobile menu items
+    const navigateTo = (path: string) => {
+        navigate(path);
+        // Close all menus after navigation
+        setMobileMenuOpen(false);
+        setMobileDropdownOpen(false);
     };
 
     return (
@@ -88,33 +91,33 @@ const Navbar = () => {
                         <button 
                             id="portfolioButton"
                             className="text-white uppercase hover:text-pink-500 flex items-center"
-                            onMouseEnter={handleDropdownToggle}
-                            onMouseLeave={handleDropdownClose}
+                            onMouseEnter={() => setDesktopDropdownOpen(true)}
+                            onMouseLeave={() => setDesktopDropdownOpen(true)}
                         >
                             Portfolio
                             <ChevronDown className="ml-1 w-4 h-4" />
                         </button>
                         
-                        {dropdownOpen && (
+                        {desktopDropdownOpen && (
                             <div 
-                                id="dropdownMenu"
+                                id="desktopDropdownMenu"
                                 className="absolute top-full left-1/2 transform -translate-x-1/2 bg-gray-900 rounded-md shadow-lg mt-1 py-2 w-48 z-50"
-                                onMouseEnter={handleDropdownToggle}
-                                onMouseLeave={handleDropdownClose}
+                                onMouseEnter={() => setDesktopDropdownOpen(true)}
+                                onMouseLeave={() => setDesktopDropdownOpen(false)}
                             >
-                                <Link to="/wedding" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
+                                <Link to="/wedding" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
                                     <Camera className="mr-2 w-5 h-5" />
                                     <span>Wedding</span>
                                 </Link>
-                                <Link to="/marriage-anniversary" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
+                                <Link to="/marriage-anniversary" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
                                     <Calendar className="mr-2 w-5 h-5" />
                                     <span>Marriage Anniversary</span>
                                 </Link>
-                                <Link to="/birthday" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
+                                <Link to="/birthday" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
                                     <Cake className="mr-2 w-5 h-5" />
                                     <span>Birthday</span>
                                 </Link>
-                                <Link to="/maternity" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
+                                <Link to="/maternity" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
                                     <Baby className="mr-2 w-5 h-5" />
                                     <span>Maternity</span>
                                 </Link>
@@ -162,41 +165,68 @@ const Navbar = () => {
             {mobileMenuOpen && (
                 <div className="md:hidden bg-black bg-opacity-95 absolute top-full left-0 w-full z-50">
                     <div className="px-4 py-8 space-y-4">
-                        <Link to="/" className="block text-white text-lg uppercase" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+                        <button 
+                            className="block text-white text-lg uppercase w-full text-left"
+                            onClick={() => navigateTo('/')}
+                        >
+                            Home
+                        </button>
                         
                         <div>
                             <button 
-                                className="text-white text-lg uppercase flex items-center"
-                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                                className="text-white text-lg uppercase flex items-center w-full"
+                                onClick={toggleMobileDropdown}
                             >
                                 Portfolio
-                                <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                                <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
                             
-                            {dropdownOpen && (
+                            {mobileDropdownOpen && (
                                 <div className="ml-4 mt-2 space-y-2">
-                                    <Link to="/wedding" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                    <button 
+                                        className="block text-white py-1 flex items-center w-full text-left" 
+                                        onClick={() => navigateTo('/wedding')}
+                                    >
                                         <Camera className="mr-2 w-5 h-5" />
                                         <span>Wedding</span>
-                                    </Link>
-                                    <Link to="/marriage-anniversary" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                    </button>
+                                    <button 
+                                        className="block text-white py-1 flex items-center w-full text-left" 
+                                        onClick={() => navigateTo('/marriage-anniversary')}
+                                    >
                                         <Calendar className="mr-2 w-5 h-5" />
                                         <span>Marriage Anniversary</span>
-                                    </Link>
-                                    <Link to="/birthday" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                    </button>
+                                    <button 
+                                        className="block text-white py-1 flex items-center w-full text-left" 
+                                        onClick={() => navigateTo('/birthday')}
+                                    >
                                         <Cake className="mr-2 w-5 h-5" />
                                         <span>Birthday</span>
-                                    </Link>
-                                    <Link to="/maternity" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                    </button>
+                                    <button 
+                                        className="block text-white py-1 flex items-center w-full text-left" 
+                                        onClick={() => navigateTo('/maternity')}
+                                    >
                                         <Baby className="mr-2 w-5 h-5" />
                                         <span>Maternity</span>
-                                    </Link>
+                                    </button>
                                 </div>
                             )}
                         </div>
                         
-                        <Link to="/about" className="block text-white text-lg uppercase" onClick={() => setMobileMenuOpen(false)}>About</Link>
-                        <Link to="/faq" className="block text-white text-lg uppercase" onClick={() => setMobileMenuOpen(false)}>FAQ</Link>
+                        <button 
+                            className="block text-white text-lg uppercase w-full text-left"
+                            onClick={() => navigateTo('/about')}
+                        >
+                            About
+                        </button>
+                        <button 
+                            className="block text-white text-lg uppercase w-full text-left"
+                            onClick={() => navigateTo('/faq')}
+                        >
+                            FAQ
+                        </button>
                         
                         <div className="flex items-center space-x-4 pt-2">
                             <a href="#" className="text-white text-xl hover:text-pink-500">
