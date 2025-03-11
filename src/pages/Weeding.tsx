@@ -2,7 +2,27 @@ import React from 'react';
 import styles from './Weeding.module.css';
 const Weeding: React.FC = () => {
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} min-h-screen w-full  relative overflow-hidden`}>
+            <header className={`${styles.header} relative h-screen overflow-hidden`}>
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/Images & Videos/CenemeticShort/WhatsApp Video 2025-02-26 at 11.54.04_78da36ac.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="relative h-full flex flex-col items-center justify-center text-white text-center">
+            <h1 className={`${styles.heroTitle} mb-4`}>
+              {/* COLORFUL | AUTHENTIC | CREATIVE */}
+            </h1>
+            <p className={`${styles.heroSubtitle}`}>
+            गणपति बप्पा मोरया
+            </p>
+          </div>
+        </header>
 
 
 
