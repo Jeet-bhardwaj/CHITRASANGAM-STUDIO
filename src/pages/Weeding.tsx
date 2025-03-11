@@ -5,12 +5,6 @@ const Weeding: React.FC = () => {
         <div className={styles.container}>
 
 
-            {/* BACKGROUND VIDEO I Dont Know How its working but it is working */}
-            <video autoPlay loop muted className={styles.backgroundVideo}>
-                <source src="/Images & Videos/CenemeticShort/WhatsApp Video 2025-02-26 at 11.54.04_78da36ac.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-
 
             {/* GALLERY */}
             <div className={styles.gallery}>

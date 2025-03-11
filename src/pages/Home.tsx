@@ -24,7 +24,7 @@ function App() {
           </video>
           <div className="relative h-full flex flex-col items-center justify-center text-white text-center">
             <h1 className={`${styles.heroTitle} mb-4`}>
-              COLORFUL | AUTHENTIC | CREATIVE
+              {/* COLORFUL | AUTHENTIC | CREATIVE */}
             </h1>
             <p className={`${styles.heroSubtitle}`}>
             गणपति बप्पा मोरया

@@ -1,7 +1,7 @@
 .navbar {
     background: linear-gradient(180deg, #000000 0%, #00000000 100%);/* Semi-transparent black background */
     /* backdrop-filter: blur(10px); Blur effect for background */
-    transition: transform 0.3s ease; /* Smooth transition */
+    transition: transform 0.3s ease, background 0.3s ease; /* Smooth transition */
     /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); Shadow for depth */
 }
 
@@ -26,49 +26,103 @@
 }
 
 .navbarLink {
-    color: white; /* White text for links */
+    color: white;
     text-transform: uppercase;
-    transition: color 0.3s ease; /* Smooth color transition */
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.5rem 0;
 }
 
 .navbarLink:hover {
     color: #ff4081; /* Change color on hover */
 }
 
+/* Enhanced dropdown styles */
 .dropdownMenu {
     position: absolute;
-    background-color: #ff40802f; /* Dark background for dropdown */
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    background-color: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(10px);
     border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 10; /* Ensure dropdown is above other elements */
-    margin-top: 0.5rem; /* Space between button and dropdown */
-    width: 200px; /* Set a width for the dropdown */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    margin-top: 0.8rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 64, 129, 0.3);
+}
+
+.dropdownMenu::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background-color: rgba(15, 15, 15, 0.95);
+    border-top: 1px solid rgba(255, 64, 129, 0.3);
+    border-left: 1px solid rgba(255, 64, 129, 0.3);
+}
+
+.dropdownContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .dropdownItem {
-    padding: 0.5rem 1rem;
-    color: white; /* White text for dropdown items */
-    transition: background-color 0.3s ease;
-    display: block; /* Ensure items are block elements */
+    padding: 0.75rem 1rem;
+    color: white;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
 }
 
 .dropdownItem:hover {
-    background-color: #ff4081; /* Darker gray on hover */
+    background-color: rgba(255, 64, 129, 0.2);
+    border-left: 3px solid #ff4081;
+    padding-left: 1.25rem;
+}
+
+/* Animation for dropdown */
+.dropdownAnimation {
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) translateX(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+    }
 }
 
 /* Responsive styles for mobile view */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the start */
+        padding: 1rem;
+        justify-content: space-between; /* Ensure space between logo and menu button */
     }
-
-    .navbarLink {
-        padding: 10px 0; /* Add padding for better touch targets */
+    
+    .navbarTitle {
+        font-size: 1.5rem;
     }
-
-    .dropdownMenu {
-        width: 100%; /* Full width for dropdown on mobile */
+    
+    .navbarSubtitle {
+        font-size: 1.2rem;
+    }
+    
+    .photography {
+        font-size: 1.5rem;
     }
 }
 
@@ -77,4 +131,89 @@
     font-size: 2rem; /* Adjust size as needed */
     font-style: normal; /* Normal style for a cleaner look */
     color: #ff4081; /* Optional: Change color for emphasis */
+}
+
+/* Mobile menu styles - updated to ensure visibility */
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto; /* Allow scrolling if needed */
+}
+
+.mobileMenuOpen {
+    transform: translateX(0);
+}
+
+.mobileNavLink {
+    color: white;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 0.75rem 0;
+    width: 100%;
+    text-align: center;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobileNavLink:hover {
+    color: #ff4081;
+}
+
+.mobileDropdown {
+    background-color: rgba(255, 64, 129, 0.1);
+    border-radius: 0.5rem;
+    margin: 0.5rem auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 64, 129, 0.2);
+}
+
+.mobileDropdownItem {
+    color: white;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
+}
+
+.mobileDropdownItem:hover {
+    background-color: rgba(255, 64, 129, 0.3);
+    border-left: 3px solid #ff4081;
+    padding-left: 1.25rem;
+}
+
+/* Fix for the existing mobile styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbarTitle {
+        font-size: 1.5rem;
+    }
+    
+    .navbarSubtitle {
+        font-size: 1.2rem;
+    }
+    
+    .photography {
+        font-size: 1.5rem;
+    }
 } 
