@@ -1,5 +1,5 @@
 .navbar {
-    background: linear-gradient(180deg, #000000 0%, #02020200 100%);/* Semi-transparent black background */
+    background: linear-gradient(180deg, #000000 0%, #0c0c0c00 100%);/* Semi-transparent black background */
     /* backdrop-filter: blur(10px); Blur effect for background */
     transition: transform 0.3s ease, background 0.3s ease; /* Smooth transition */
    
