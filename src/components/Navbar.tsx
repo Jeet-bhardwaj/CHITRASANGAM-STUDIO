@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import { Menu, X, ChevronDown, Camera, Calendar, Cake, Baby } from 'lucide-react';
+import { ChevronDown, Camera, Calendar, Cake, Baby } from 'lucide-react';
+import Hamburger from './Hamburger';
 
 const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -42,11 +43,20 @@ const Navbar = () => {
         };
     }, []);
 
+    // Prevent body scrolling when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen]);
+
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
-        if (!mobileMenuOpen) {
-            setDropdownOpen(false);
-        }
     };
 
     const handleDropdownToggle = () => {
@@ -63,134 +73,151 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`${styles.navbar} ${isVisible ? styles.visible : styles.hidden} fixed w-full z-50 flex justify-between items-center px-6 md:px-8 py-2`}>
-            <div className="text-white flex-shrink-0">
-                <h1 className={`${styles.navbarTitle}`}>CHITRASANGAM</h1>
-                <h2 className={`${styles.navbarSubtitle}`}>STUDIO</h2>
-                <p className={`${styles.photography} font-script text-xl`}>photography</p>
-            </div>
-            
-            <div className="flex-grow"></div>
-            
-            <div className="hidden md:flex space-x-8 text-white uppercase justify-end flex-shrink-0">
-                <Link to="/" className={styles.navbarLink}>Home</Link>
-                <div className="relative"
-                     onMouseEnter={handleDropdownToggle}
-                     onMouseLeave={handleDropdownClose}
-                >
-                    <button id="portfolioButton" className={`${styles.navbarLink} flex items-center`}>
-                        PORTFOLIO
-                        <ChevronDown className="ml-1 w-4 h-4" />
-                    </button>
-                    {dropdownOpen && (
-                        <div id="dropdownMenu" className={`${styles.dropdownMenu} ${styles.dropdownAnimation}`}
-                             onMouseEnter={handleDropdownToggle}
-                             onMouseLeave={handleDropdownClose}
-                        >
-                            <div className={styles.dropdownContent}>
-                                <Link to="/wedding" className={styles.dropdownItem} onClick={handleDropdownItemClick}>
-                                    <Camera className="mr-2 w-5 h-5" />
-                                    <span>Wedding</span>
-                                </Link>
-                                <Link to="/marriage-anniversary" className={styles.dropdownItem} onClick={handleDropdownItemClick}>
-                                    <Calendar className="mr-2 w-5 h-5" />
-                                    <span>Marriage Anniversary</span>
-                                </Link>
-                                <Link to="/birthday" className={styles.dropdownItem} onClick={handleDropdownItemClick}>
-                                    <Cake className="mr-2 w-5 h-5" />
-                                    <span>Birthday</span>
-                                </Link>
-                                <Link to="/maternity" className={styles.dropdownItem} onClick={handleDropdownItemClick}>
-                                    <Baby className="mr-2 w-5 h-5" />
-                                    <span>Maternity</span>
-                                </Link>
-                            </div>
-                        </div>
-                    )}
+        <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-70 z-50">
+            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div className="text-white">
+                    <h1 className="text-2xl font-bold">CHITRASANGAM</h1>
+                    <h2 className="text-xl text-pink-500">STUDIO</h2>
+                    <p className="text-lg text-pink-500 italic">photography</p>
                 </div>
-                <Link to="/about" className={styles.navbarLink}>About</Link>
-                <Link to="/faq" className={styles.navbarLink}>FAQ</Link>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-6 ml-8 flex-shrink-0">
-                <a href="#" className="text-white hover:text-gray-300">
-                    <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="text-white hover:text-gray-300">
-                    <i className="fab fa-instagram"></i>
-                </a>
-                <a href="#" className="text-white hover:text-gray-300">
-                    <i className="fab fa-tiktok"></i>
-                </a>
-                <button className="bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition-colors duration-300">
-                    CONTACT
-                </button>
-            </div>
-            
-            <button 
-                className="md:hidden text-white focus:outline-none z-50 ml-auto" 
-                onClick={toggleMobileMenu}
-            >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            
-            <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ''} md:hidden`}>
-                <div className="flex flex-col items-center space-y-6 py-8">
-                    <Link to="/" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>Home</Link>
-                    
-                    <div className="w-full text-center">
+
+                {/* Desktop Menu */}
+                <div className="hidden md:flex items-center space-x-6">
+                    <Link to="/" className="text-white uppercase hover:text-pink-500">Home</Link>
+                    <div className="relative">
                         <button 
-                            className={`${styles.mobileNavLink} flex items-center justify-center`}
-                            onClick={() => setDropdownOpen(!dropdownOpen)}
+                            id="portfolioButton"
+                            className="text-white uppercase hover:text-pink-500 flex items-center"
+                            onMouseEnter={handleDropdownToggle}
+                            onMouseLeave={handleDropdownClose}
                         >
-                            PORTFOLIO
-                            <ChevronDown className={`ml-2 w-4 h-4 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                            Portfolio
+                            <ChevronDown className="ml-1 w-4 h-4" />
                         </button>
                         
                         {dropdownOpen && (
-                            <div className={`${styles.mobileDropdown} ${styles.dropdownAnimation}`}>
-                                <Link to="/wedding" className={styles.mobileDropdownItem} onClick={handleDropdownItemClick}>
+                            <div 
+                                id="dropdownMenu"
+                                className="absolute top-full left-1/2 transform -translate-x-1/2 bg-gray-900 rounded-md shadow-lg mt-1 py-2 w-48 z-50"
+                                onMouseEnter={handleDropdownToggle}
+                                onMouseLeave={handleDropdownClose}
+                            >
+                                <Link to="/wedding" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
                                     <Camera className="mr-2 w-5 h-5" />
                                     <span>Wedding</span>
                                 </Link>
-                                <Link to="/marriage-anniversary" className={styles.mobileDropdownItem} onClick={handleDropdownItemClick}>
+                                <Link to="/marriage-anniversary" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
                                     <Calendar className="mr-2 w-5 h-5" />
                                     <span>Marriage Anniversary</span>
                                 </Link>
-                                <Link to="/birthday" className={styles.mobileDropdownItem} onClick={handleDropdownItemClick}>
+                                <Link to="/birthday" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
                                     <Cake className="mr-2 w-5 h-5" />
                                     <span>Birthday</span>
                                 </Link>
-                                <Link to="/maternity" className={styles.mobileDropdownItem} onClick={handleDropdownItemClick}>
+                                <Link to="/maternity" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center" onClick={handleDropdownItemClick}>
                                     <Baby className="mr-2 w-5 h-5" />
                                     <span>Maternity</span>
                                 </Link>
                             </div>
                         )}
                     </div>
+                    <Link to="/about" className="text-white uppercase hover:text-pink-500">About</Link>
+                    <Link to="/faq" className="text-white uppercase hover:text-pink-500">FAQ</Link>
                     
-                    <Link to="/about" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>About</Link>
-                    <Link to="/faq" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>FAQ</Link>
-                    
-                    <div className="flex items-center space-x-6 mt-4">
-                        <a href="#" className="text-white hover:text-gray-300 transition-colors duration-300">
+                    <div className="flex items-center space-x-4">
+                        <a href="#" className="text-white hover:text-pink-500">
                             <i className="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" className="text-white hover:text-gray-300 transition-colors duration-300">
+                        <a href="#" className="text-white hover:text-pink-500">
                             <i className="fab fa-instagram"></i>
                         </a>
-                        <a href="#" className="text-white hover:text-gray-300 transition-colors duration-300">
+                        <a href="#" className="text-white hover:text-pink-500">
                             <i className="fab fa-tiktok"></i>
                         </a>
+                        <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600">
+                            CONTACT
+                        </button>
                     </div>
-                    
-                    <button className="bg-pink-500 text-white px-6 py-2 rounded-full hover:bg-pink-600 transition-colors duration-300 mt-4">
-                        CONTACT
-                    </button>
                 </div>
+
+                {/* Mobile Menu Button */}
+                <button 
+                    className="block md:hidden text-white"
+                    onClick={toggleMobileMenu}
+                    aria-label="Menu"
+                >
+                    {mobileMenuOpen ? (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    ) : (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    )}
+                </button>
             </div>
+
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
+                <div className="md:hidden bg-black bg-opacity-95 absolute top-full left-0 w-full z-50">
+                    <div className="px-4 py-8 space-y-4">
+                        <Link to="/" className="block text-white text-lg uppercase" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+                        
+                        <div>
+                            <button 
+                                className="text-white text-lg uppercase flex items-center"
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                            >
+                                Portfolio
+                                <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            
+                            {dropdownOpen && (
+                                <div className="ml-4 mt-2 space-y-2">
+                                    <Link to="/wedding" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                        <Camera className="mr-2 w-5 h-5" />
+                                        <span>Wedding</span>
+                                    </Link>
+                                    <Link to="/marriage-anniversary" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                        <Calendar className="mr-2 w-5 h-5" />
+                                        <span>Marriage Anniversary</span>
+                                    </Link>
+                                    <Link to="/birthday" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                        <Cake className="mr-2 w-5 h-5" />
+                                        <span>Birthday</span>
+                                    </Link>
+                                    <Link to="/maternity" className="block text-white py-1 flex items-center" onClick={handleDropdownItemClick}>
+                                        <Baby className="mr-2 w-5 h-5" />
+                                        <span>Maternity</span>
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                        
+                        <Link to="/about" className="block text-white text-lg uppercase" onClick={() => setMobileMenuOpen(false)}>About</Link>
+                        <Link to="/faq" className="block text-white text-lg uppercase" onClick={() => setMobileMenuOpen(false)}>FAQ</Link>
+                        
+                        <div className="flex items-center space-x-4 pt-2">
+                            <a href="#" className="text-white text-xl hover:text-pink-500">
+                                <i className="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" className="text-white text-xl hover:text-pink-500">
+                                <i className="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" className="text-white text-xl hover:text-pink-500">
+                                <i className="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                        
+                        <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 w-full">
+                            CONTACT
+                        </button>
+                    </div>
+                </div>
+            )}
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;

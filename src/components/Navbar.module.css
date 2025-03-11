@@ -3,6 +3,11 @@
     /* backdrop-filter: blur(10px); Blur effect for background */
     transition: transform 0.3s ease, background 0.3s ease; /* Smooth transition */
     /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); Shadow for depth */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 40;
 }
 
 .visible {
@@ -50,9 +55,9 @@
     backdrop-filter: blur(10px);
     border-radius: 0.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    z-index: 10;
+    z-index: 999; /* Higher z-index */
     margin-top: 0.8rem;
-    overflow: hidden;
+    overflow: visible; /* Make sure content isn't clipped */
     border: 1px solid rgba(255, 64, 129, 0.3);
 }
 
@@ -134,26 +139,27 @@
 }
 
 /* Mobile menu styles - updated to ensure visibility */
+
 .mobileMenu {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 10;
-    /* display: flex; */
-    /* flex-direction: column;
+    z-index: 900; /* Very high z-index to be above everything */
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center; */
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    overflow-y: auto; /* Allow scrolling if needed */
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
 .mobileMenuOpen {
-    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .mobileNavLink {
@@ -197,6 +203,13 @@
     background-color: rgba(255, 64, 129, 0.3);
     border-left: 3px solid #ff4081;
     padding-left: 1.25rem;
+}
+
+.hamburgerWrapper {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000; /* Highest z-index to always be visible */
 }
 
 /* Fix for the existing mobile styles */

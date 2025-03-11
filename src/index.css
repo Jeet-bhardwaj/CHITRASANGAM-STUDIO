@@ -205,3 +205,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 */
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 220px;
+  background-color: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 20; /* Ensure it's above other elements */
+  margin-top: 0.8rem;
+  overflow: visible; /* Ensure content is not clipped */
+  border: 1px solid rgba(255, 64, 129, 0.3);
+}
