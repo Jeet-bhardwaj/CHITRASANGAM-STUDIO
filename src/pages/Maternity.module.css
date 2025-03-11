@@ -1,0 +1,713 @@
+/* Main container */
+.maternityContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Hero Section */
+.maternityHero {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/Images & Videos/Maternity/Maternity_1.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 4rem;
+}
+
+.maternityTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.maternitySubtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.heroButton {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: #e8b0b0;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.heroButton:hover {
+  background-color: #d19292;
+  transform: translateY(-3px);
+}
+
+/* Description Section */
+.maternityDescription {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.maternityDescription h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-weight: 600;
+}
+
+.maternityDescription p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #666;
+}
+
+/* Experience Section */
+.experienceSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  margin: 6rem 0;
+  padding: 3rem;
+  background-color: #faf6f6;
+  border-radius: 10px;
+}
+
+.experienceImage {
+  flex: 1;
+}
+
+.experienceImage img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.experienceImage img:hover {
+  transform: scale(1.02);
+}
+
+.experienceContent {
+  flex: 1;
+}
+
+.experienceContent h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.experienceStep {
+  display: flex;
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.stepNumber {
+  background-color: #e8b0b0;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.experienceStep h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: #444;
+}
+
+.experienceStep p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Gallery Section */
+.gallerySection {
+  margin: 5rem 0;
+  text-align: center;
+}
+
+.gallerySection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.galleryFilters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.galleryFilters button {
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin: 0 0.5rem;
+  color: #666;
+}
+
+.galleryFilters button:hover,
+.activeFilter {
+  background-color: #e8b0b0;
+  border-color: #e8b0b0;
+  color: white !important;
+}
+
+.maternityGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.galleryItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 0;
+  padding-top: 133%; /* 3:4 aspect ratio */
+}
+
+.galleryItem img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galleryItem:hover img {
+  transform: scale(1.05);
+}
+
+.categoryLabel {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(232, 176, 176, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+  margin: 5rem 0;
+  padding: 4rem 2rem;
+  background-color: #faf6f6;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.testimonialsSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #555;
+}
+
+.testimonialCarousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.carouselButton {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #e8b0b0;
+  cursor: pointer;
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.carouselButton:hover {
+  background-color: #e8b0b0;
+  color: white;
+}
+
+.testimonialWindow {
+  width: 80%;
+  max-width: 700px;
+  overflow: hidden;
+}
+
+.testimonialSlider {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.testimonialSlide {
+  min-width: 100%;
+  padding: 0 1rem;
+}
+
+.testimonial {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.testimonial p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial h4 {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.pregnancyWeek {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.quoteIcon {
+  color: #e8b0b0;
+  opacity: 0.5;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+}
+
+.testimonialDots {
+  display: flex;
+  justify-content: center;
+}
+
+.testimonialDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot, .testimonialDot:hover {
+  background-color: #e8b0b0;
+}
+
+/* Packages Section */
+.packagesSection {
+  margin: 5rem 0;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.packagesSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #555;
+}
+
+.packagesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.packageCard {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.packageCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.highlightedPackage {
+  border: 2px solid #e8b0b0;
+  transform: scale(1.05);
+}
+
+.highlightedPackage:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+
+.popularTag {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background-color: #e8b0b0;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.packageCard h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.packagePrice {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e8b0b0;
+  margin-bottom: 1.5rem;
+}
+
+.packageFeatures {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.packageFeatures li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #666;
+}
+
+.packageButton {
+  padding: 0.8rem 1.8rem;
+  background-color: #e8b0b0;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.packageButton:hover {
+  background-color: #d19292;
+}
+
+/* FAQ Section */
+.faqSection {
+  margin: 5rem 0;
+  padding: 4rem 2rem;
+  background-color: #faf6f6;
+  border-radius: 10px;
+}
+
+.faqSection h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #555;
+}
+
+.faqContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.faqItem {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.faqItem h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.faqItem p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Booking Section */
+.bookingSection {
+  margin: 5rem 0;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/Images & Videos/Maternity/Maternity_2.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  color: white;
+}
+
+.bookingSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.bookingSection p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.bookingButton {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  background-color: #e8b0b0;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bookingButton:hover {
+  background-color: #d19292;
+  transform: translateY(-3px);
+}
+
+/* Image Modal */
+.imageModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.modalContent img {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Form Modal */
+.formModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.formContent {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.formContent h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #444;
+  font-size: 2rem;
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitButton {
+  padding: 1rem;
+  background-color: #e8b0b0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submitButton:hover {
+  background-color: #d19292;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .experienceSection {
+    flex-direction: column;
+    padding: 2rem;
+  }
+  
+  .formRow {
+    flex-direction: column;
+  }
+  
+  .packageCard {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .maternityTitle {
+    font-size: 2.5rem;
+  }
+  
+  .maternitySubtitle {
+    font-size: 1.2rem;
+  }
+  
+  .faqContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .packagesContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .packageCard {
+    width: 100%;
+  }
+  
+  .testimonialWindow {
+    width: 100%;
+  }
+  
+  .formContent {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .galleryFilters button {
+    margin-bottom: 0.5rem;
+  }
+  
+  .maternityHero {
+    height: 70vh;
+  }
+}
+  
+  
