@@ -64,12 +64,12 @@ const Navbar = () => {
     };
 
     const handleDropdownClose = () => {
-        setDropdownOpen(false);
+        setDropdownOpen(true);
     };
 
     const handleDropdownItemClick = () => {
         setDropdownOpen(false);
-        setMobileMenuOpen(false);
+        setMobileMenuOpen(true);
     };
 
     return (
