@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -8,6 +8,13 @@ import styles from './Home.module.css';
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [carouselImages] = useState([
+    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG',
+    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
+    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
+    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
+    // Add more images as needed
+  ]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
@@ -27,6 +34,15 @@ function Home() {
       });
     }
   }, []);
+
+  // Auto-slide effect for carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(timer);
+  }, [carouselImages.length]);
 
   // Portfolio categories
   const portfolioCategories = [
@@ -101,21 +117,40 @@ function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      {/* Hero Section with Video Background */}
+      {/* Hero Section with Carousel */}
       <section className={styles.heroSection}>
-        <div className={styles.videoContainer}>
-          <video 
-            ref={videoRef}
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className={styles.heroVideo}
-          >
-            <source src="/Images & Videos/CenemeticShort/hero-background.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <div className={styles.carouselContainer}>
+          {carouselImages.map((image, index) => (
+            <motion.div
+              key={index}
+              className={styles.carouselSlide}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: currentSlide === index ? 1 : 0,
+                scale: currentSlide === index ? 1 : 1.1
+              }}
+              transition={{ duration: 1 }}
+            >
+              <img 
+                src={image} 
+                alt={`Slide ${index + 1}`} 
+                className={styles.carouselImage}
+              />
+            </motion.div>
+          ))}
           <div className={styles.overlay}></div>
+          
+          {/* Carousel Navigation */}
+          <div className={styles.carouselNav}>
+            {carouselImages.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.carouselDot} ${index === currentSlide ? styles.activeDot : ''}`}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
         
         <div className={styles.heroContent}>
