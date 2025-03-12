@@ -58,18 +58,40 @@
 
 /* Quote Box */
 .quoteContainer {
-    background-color: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid #40826D;
+    background-color: hsl(7.81deg 83.91% 65.88% / 96%);
+    padding: 0.1rem;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.quoteContainer::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    font-size: 6rem;
+    color: rgba(64, 130, 109, 0.1);
+    font-family: 'Georgia', serif;
 }
 
 .quote {
     font-family: 'Montserrat', sans-serif;
     font-style: italic;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 1.9rem;
+    line-height: 1.7;
     color: #555;
+}
+
+/* Elegant Script Quote */
+.elegantQuote {
+    font-family: 'Petit Formal Script', cursive;
+    font-size: 1.3rem;
+    color: #fefffe;
+    line-height: 1.8;
+    text-align: center;
+    position: relative;
+    padding: 1rem 0;
 }
 
 /* Responsive styles */
@@ -81,6 +103,10 @@
     
     .headerText {
         font-size: 1.3rem;
+    }
+    
+    .elegantQuote {
+        font-size: 1.2rem;
     }
 }
 
@@ -112,6 +138,10 @@
     
     .headerText {
         font-size: 1.2rem;
+    }
+    
+    .elegantQuote {
+        font-size: 1.1rem;
     }
 }
 
@@ -150,11 +180,15 @@
     }
     
     .quoteContainer {
-        padding: 1rem;
+        padding: 1.5rem;
     }
     
     .quote {
         font-size: 0.85rem;
+    }
+    
+    .elegantQuote {
+        font-size: 1rem;
     }
 }
   

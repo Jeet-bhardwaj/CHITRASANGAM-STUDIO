@@ -40,7 +40,6 @@ function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
   
   // Animation effect when sections come into view
   useEffect(() => {
@@ -68,13 +67,13 @@ function Home() {
   }, [carouselImages.length]);
 
   // Auto-rotate testimonials
-  useEffect(() => {
-    const testimonialsTimer = setInterval(() => {
-      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
-    }, 8000);
+  // useEffect(() => {
+  //   const testimonialsTimer = setInterval(() => {
+  //     setActiveTestimonial(prev => (prev + 1) % testimonials.length);
+  //   }, 8000);
     
-    return () => clearInterval(testimonialsTimer);
-  }, []);
+  //   return () => clearInterval(testimonialsTimer);
+  // }, []);
 
   // Services offered
   const services = [
@@ -207,7 +206,7 @@ function Home() {
   }, []);
 
   // Handle manual navigation
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
@@ -304,7 +303,7 @@ function Home() {
             </div>
             
             <div className="w-full lg:w-1/2 lg:pl-16">
-              <h2 className={styles.sectionTitle}>Behind the Scenes</h2>
+              <h2 className={`${styles.sectionTitle} ${styles.scriptHeading}`}>Behind the Scenes</h2>
               <p className={styles.aboutText}>
                 Welcome to Chitrasangam Studio, where we transform fleeting moments into timeless memories. 
                 With our passionate team of photographers, we specialize in wedding, maternity, birthday, and family photography.
@@ -340,8 +339,19 @@ function Home() {
 
       {/* Services Section */}
       <section className={styles.servicesSection}>
-        <div className="max-w-7xl max- mx-auto px-6 py-20">
-          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Our Services</h2>
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <motion.div
+            initial={{ opacity: -3, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-center mb-16"
+          >
+            <h2 className={`${styles.scriptHeading} ${styles.whiteScriptHeading}`}>Our Services</h2>
+            <p className="text-white text-lg max-w-2xl mx-auto">
+              Discover our range of professional photography services tailored to capture your special moments.
+            </p>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {services.map((service, index) => (
               <motion.div

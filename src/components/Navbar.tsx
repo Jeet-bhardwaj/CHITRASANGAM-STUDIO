@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { ChevronDown, Camera, Calendar, Cake, Baby } from 'lucide-react';
-import Hamburger from './Hamburger';
+
 
 /**
  * Navbar component that provides navigation for the entire application
@@ -154,9 +154,9 @@ const Navbar = () => {
                                     <Camera className="mr-2 w-5 h-5" />
                                     <span>Wedding</span>
                                 </Link>
-                                <Link to="/marriage-anniversary" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
-                                    <Calendar className="mr-2 w-5 h-5" />
-                                    <span>Marriage Anniversary</span>
+                                <Link to="/new-born-baby" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
+                                    <Baby className="mr-2 w-5 h-5" />
+                                    <span>New Born Baby</span>
                                 </Link>
                                 <Link to="/birthday" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
                                     <Cake className="mr-2 w-5 h-5" />
@@ -242,10 +242,10 @@ const Navbar = () => {
                                     </button>
                                     <button 
                                         className="block text-white py-1 flex items-center w-full text-left" 
-                                        onClick={() => navigateTo('/marriage-anniversary')}
+                                        onClick={() => navigateTo('/new-born-baby')}
                                     >
-                                        <Calendar className="mr-2 w-5 h-5" />
-                                        <span>Marriage Anniversary</span>
+                                        <Baby className="mr-2 w-5 h-5" />
+                                        <span>New Born Baby</span>
                                     </button>
                                     <button 
                                         className="block text-white py-1 flex items-center w-full text-left" 

@@ -202,6 +202,23 @@
   position: relative;
 }
 
+/* Script heading style for "Behind the Scenes" */
+.scriptHeading {
+  font-family: 'Petit Formal Script', cursive;
+  font-size: 3.2rem;
+  color: #2F4F4F;
+  font-weight: 400; /* Script fonts often look better with lighter weight */
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+/* White bold script heading for "Our Services" */
+.whiteScriptHeading {
+  color: white;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adding shadow for better visibility against backgrounds */
+}
+
 .aboutText {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -617,6 +634,10 @@
   .serviceCard p {
     font-size: 0.9rem;
   }
+
+  .scriptHeading {
+    font-size: 2.6rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -680,6 +701,10 @@
   .serviceIcon {
     transform: scale(0.9);
   }
+
+  .scriptHeading {
+    font-size: 2.2rem;
+  }
 }
 
 /* For very small devices */
@@ -725,4 +750,7 @@
 
 .servicesContainer::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
-} 
+}
+
+/* Ensure the font is loaded */
+@import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap'); 

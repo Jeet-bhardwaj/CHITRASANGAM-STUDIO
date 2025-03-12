@@ -8,6 +8,8 @@ import Maternity from './pages/Maternity';
 import Birthday from './pages/Birthday';
 import About from './pages/About';
 import FAQ from './pages/FAQ';
+import NewBornBaby from './pages/NewBornBaby';
+
 const App = () => {
   // const [loading, setLoading] = useState(true);
 
@@ -41,6 +43,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/wedding" element={<Wedding />} />
+          <Route path="/new-born-baby" element={<NewBornBaby />} />
           <Route path="/maternity" element={<Maternity />} />
           <Route path="/birthday" element={<Birthday />} />
           <Route path="/about" element={<About />} />

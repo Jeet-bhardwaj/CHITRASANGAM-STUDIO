@@ -162,7 +162,158 @@
   margin-top: 3rem;
 }
 
-/* Responsive Design */
+/* Enhanced Profile Image with dramatic effects */
+.profileImageContainer {
+  width: 350px;
+  height: 350px;
+  margin: 0 auto 2rem;
+  position: relative;
+  z-index: 10;
+  animation: float 6s ease-in-out infinite;
+}
+
+.glowingBorder {
+  width: 100%;
+  height: 100%;
+  border-radius: 29%;
+  overflow: hidden;
+  position: relative;
+  z-index: 9;
+}
+
+.glowingBorder::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  z-index: -1;
+  background: linear-gradient(45deg, #FF69B4, #FFD700, #40826D, #1E90FF, #FF69B4);
+  background-size: 400% 400%;
+  border-radius: 50%;
+  animation: animatedBorder 4s ease infinite;
+  filter: brightness(1.3) blur(3px);
+}
+
+/* Add spotlight effect */
+.glowingBorder::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 40%;
+  height: 40%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: spotlight 7s infinite;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+  border-radius: 50%;
+  border: 4px solid white;
+  animation: pulse 3s ease-in-out infinite;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.profileImageContainer:hover .profileImage {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* Add emphasis frame */
+.profileImageContainer::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border: 2px dashed rgba(255, 105, 180, 0.5);
+  border-radius: 50%;
+  animation: rotate 30s linear infinite;
+  pointer-events: none;
+}
+
+/* Animation Keyframes */
+@keyframes animatedBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spotlight {
+  0%, 100% {
+    top: -10%;
+    left: -10%;
+    opacity: 0.6;
+  }
+  25% {
+    top: -10%;
+    left: 80%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 80%;
+    left: 80%;
+    opacity: 0.6;
+  }
+  75% {
+    top: 80%;
+    left: -10%;
+    opacity: 0.8;
+  }
+}
+
+/* Adjust responsive styling for the larger image */
 @media (max-width: 768px) {
   .aboutOverlay {
     font-size: 4rem;
@@ -183,6 +334,11 @@
   .instagramHandle {
     font-size: 3rem;
   }
+
+  .profileImageContainer {
+    width: 280px;
+    height: 280px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -200,5 +356,10 @@
 
   .sectionTitle {
     font-size: 2rem;
+  }
+
+  .profileImageContainer {
+    width: 220px;
+    height: 220px;
   }
 } 

@@ -9,7 +9,7 @@ const HomeWedding = () => {
         <div className={styles.columnOne}>
           
         <p className={styles.headerText}>
-          YOUR WEDDING DAY DESERVES A PHOTOGRAPHER WHO’S AS{" "}
+          YOUR WEDDING DAY DESERVES A PHOTOGRAPHER WHO'S AS{" "}
           <span className={styles.highlight}>EXCITED</span> AS YOU ARE!
         </p>
           <img src="/Images & Videos/Wedding/weddingImages/weddingImages_1.JPG" alt="Wedding 1" className={styles.image} />
@@ -25,10 +25,10 @@ const HomeWedding = () => {
         <div className={styles.columnThree}>
           <img src="/Images & Videos/Wedding/weddingImages/weddingImages_4.JPG" alt="Wedding 4" className={styles.image} />
           <div className={styles.quoteContainer}>
-            <p className={styles.quote}>
-              “Anil Gupta isn’t just a talented photographer, she has a wealth of knowledge about
+            <p className={styles.elegantQuote}>
+              "Anil Gupta isn't just a talented photographer, she has a wealth of knowledge about
               the wedding industry and has a knack for making couples feel comfortable.
-              She’s the coolest person, and my favorite part of our wedding (don’t tell my husband ).”
+              He is the coolest person, and my favorite part of our wedding ."
             </p>
           </div>
           <img src="/Images & Videos/Wedding/weddingImages/LandscapeWeddingImages_2.jpg" alt="Wedding 6" className={styles.image} />

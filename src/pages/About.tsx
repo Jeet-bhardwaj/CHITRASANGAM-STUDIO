@@ -30,7 +30,29 @@ function About() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <h1 className={styles.hello}>HELLO</h1>
-          <h2 className={styles.name}>I'm Katie!</h2>
+          <h2 className={styles.name}>I'm Anil Gupta</h2>
+          
+          {/* Enhanced Anil Gupta profile section */}
+          <motion.div 
+            className={styles.profileImageContainer}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              duration: 0.8,
+              delay: 0.5
+            }}
+          >
+            <div className={styles.glowingBorder}>
+              <img 
+                src="/Images & Videos/About/1741780863877.jpg" 
+                alt="Anil Gupta" 
+                className={styles.profileImage}
+              />
+            </div>
+          </motion.div>
+          
           <p className={styles.intro}>
             As a Pittsburgh wedding photographer and senior portrait artist with over 11 years behind the camera, 
             I specialize in creating natural, timeless images that make you do a double-take and say, 
