@@ -1,34 +1,40 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaQuoteLeft, FaQuoteRight, FaArrowRight, FaInstagram, FaYoutube, FaFacebookF } from 'react-icons/fa';
-import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby, Heart, Camera, Award } from 'lucide-react';
+import { FaArrowRight, FaInstagram, FaYoutube, FaFacebookF } from 'react-icons/fa';
+import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby } from 'lucide-react';
 import styles from './Home.module.css';
 import HomeWedding from '../components/HomeWedding';
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  const carouselRef = useRef(null);
   const [carouselImages] = useState([
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG',
       text: 'CAPTURING TIMELESS MOMENTS'
     },
     {
-      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG ',
-      text: 'CREATING MEMORIES THAT LAST FOREVER'
+      image: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG',
+      title: 'CREATING MEMORIES THAT LAST FOREVER',
+      subtitle: 'Elegant and authentic photography'
     },
     {
-      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
-      text: 'EVERY MOMENT TELLS A STORY'
+      image: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
+      title: 'EVERY MOMENT TELLS A STORY',
+      subtitle: 'Let us tell yours through our lens'
     },
     {
-      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
-      text: 'TURNING MOMENTS INTO MASTERPIECES'
+      image: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
+      title: 'TURNING MOMENTS INTO MASTERPIECES',
+      subtitle: 'Artistic vision meets technical excellence'
     },
     {
-      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
-      text: 'PREMIUM PHOTOGRAPHY SERVICES'
+      image: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
+      title: 'PREMIUM PHOTOGRAPHY SERVICES',
+      subtitle: 'For weddings, families, and special events'
     },
   ]);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -121,63 +127,145 @@ function Home() {
     { number: "150+", text: "Wedding Events" }
   ];
 
+  // At the top of your component, add this useEffect hook to load fonts
+  useEffect(() => {
+    // Load fonts if not already loaded
+    const fontMontserrat = document.createElement('link');
+    fontMontserrat.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap';
+    fontMontserrat.rel = 'stylesheet';
+    
+    const fontPlayfair = document.createElement('link');
+    fontPlayfair.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;900&display=swap';
+    fontPlayfair.rel = 'stylesheet';
+    
+    document.head.appendChild(fontMontserrat);
+    document.head.appendChild(fontPlayfair);
+    
+    return () => {
+      document.head.removeChild(fontMontserrat);
+      document.head.removeChild(fontPlayfair);
+    };
+  }, []);
+
+  // Simplified slides array with direct paths
+  const slides = [
+    {
+      image: 'Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG',
+      title: 'CAPTURING TIMELESS MOMENTS',
+      subtitle: 'Premium photography for your special occasions'
+    },
+    {
+      image: 'Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
+      title: 'CREATING MEMORIES THAT LAST FOREVER',
+      subtitle: 'Elegant and authentic photography'
+    },
+    {
+      image: 'Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
+      title: 'EVERY MOMENT TELLS A STORY',
+      subtitle: 'Let us tell yours through our lens'
+    },
+    {
+      image: 'Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
+      title: 'TURNING MOMENTS INTO MASTERPIECES',
+      subtitle: 'Artistic vision meets technical excellence'
+    },
+    {
+      image: 'Images & Videos/HomePhotos/Topcarousel/Topcarousel_5.JPG',
+      title: 'PREMIUM PHOTOGRAPHY SERVICES',
+      subtitle: 'For weddings, families, and special events'
+    }
+  ];
+
+  // Debug image loading
+  useEffect(() => {
+    slides.forEach((slide, index) => {
+      const img = new Image();
+      img.src = slide.image;
+      img.onload = () => console.log(`Image ${index + 1} loaded successfully:`, slide.image);
+      img.onerror = () => console.error(`Image ${index + 1} failed to load:`, slide.image);
+    });
+  }, []);
+
+  // Auto advance slides
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  // Load fonts
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+    
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  // Handle manual navigation
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
   return (
     <div className={styles.homeContainer}>
-      {/* Hero Section with Enhanced Carousel */}
-      <section className={styles.heroSection}>
-        <div className={styles.carouselContainer}>
-          {/* Previous Button */}
-          <button 
-            className={`${styles.carouselButton} ${styles.prevButton}`}
-            onClick={() => setCurrentSlide((prev) => 
-              prev === 0 ? carouselImages.length - 1 : prev - 1
-            )}
-            aria-label="Previous slide"
-          >
-            <span>←</span>
-          </button>
-
-          {/* Carousel Images with Text Overlay */}
-          <div className={styles.carouselTrack} style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-            {carouselImages.map((slide, index) => (
-              <div key={index} className={styles.carouselSlide}>
-                <img src={slide.url} alt={`Slide ${index + 1}`} className={styles.carouselImage} />
-                <div className={styles.carouselOverlay}></div>
-                <motion.div 
-                  className={styles.carouselContent}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: currentSlide === index ? 1 : 0, y: currentSlide === index ? 0 : 20 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  <h1 className={styles.heroTitle}>{slide.text}</h1>
-                  <p className={styles.heroSubtitle}>Preserving life's precious moments through our lens</p>
-                  <div className={styles.heroCtas}>
-                    <a href="#contact" className={styles.ctaButton}>Book a Session</a>
-                    <Link to="/portfolio" className={styles.ctaButtonOutline}>View Portfolio</Link>
-                  </div>
-                </motion.div>
+      {/* Enhanced Hero Carousel */}
+      <section className={styles.heroSection} ref={carouselRef}>
+        <div className={styles.carouselWrapper}>
+          {slides.map((slide, index) => (
+            <div 
+              key={index}
+              className={`${styles.carouselSlide} ${currentSlide === index ? styles.activeSlide : ''}`}
+            >
+              <img 
+                src={slide.image}
+                alt={slide.title}
+                className={styles.carouselImage}
+                onError={(e) => {
+                  console.error(`Error loading image: ${slide.image}`);
+                  console.log('Error details:', e);
+                }}
+              />
+              <div className={styles.carouselOverlay} />
+              
+              <div className={styles.carouselContent}>
+                <h1 className={styles.heroTitle}>
+                  {slide.title}
+                </h1>
+                <p className={styles.heroSubtitle}>
+                  {slide.subtitle}
+                </p>
               </div>
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button 
-            className={`${styles.carouselButton} ${styles.nextButton}`}
-            onClick={() => setCurrentSlide((prev) => 
-              (prev + 1) % carouselImages.length
-            )}
-            aria-label="Next slide"
-          >
-            <span>→</span>
+            </div>
+          ))}
+          
+          {/* Navigation Arrows */}
+          <button className={`${styles.carouselNav} ${styles.prevNav}`} onClick={prevSlide}>
+            &#10094;
+          </button>
+          <button className={`${styles.carouselNav} ${styles.nextNav}`} onClick={nextSlide}>
+            &#10095;
           </button>
           
-          {/* Carousel Indicators */}
+          {/* Navigation dots */}
           <div className={styles.carouselIndicators}>
-            {carouselImages.map((_, index) => (
-              <button 
-                key={index} 
+            {slides.map((_, index) => (
+              <button
+                key={index}
                 className={`${styles.carouselIndicator} ${currentSlide === index ? styles.activeIndicator : ''}`}
-                onClick={() => setCurrentSlide(index)}
+                onClick={() => goToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -550,52 +638,6 @@ function Home() {
             >
               View All Videos on YouTube
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Testimonial Section */}
-      <section className={styles.testimonialSection}>
-        <div className="max-w-7xl mx-auto px-6 py-24">
-          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Client Testimonials</h2>
-          
-          <div className={styles.testimonialContainer}>
-            <div 
-              className={styles.testimonialTrack} 
-              style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className={styles.testimonialSlide}>
-                  <motion.div 
-                    className={styles.testimonialContent}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className={styles.quoteIcon}>
-                      <FaQuoteLeft />
-                    </div>
-                    <p className={styles.testimonialQuote}>{testimonial.quote}</p>
-                    <div className={styles.testimonialAuthor}>
-                      <p className={styles.testimonialName}>{testimonial.name}</p>
-                      <p className={styles.testimonialEvent}>{testimonial.event}</p>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-            
-            <div className={styles.testimonialDots}>
-              {testimonials.map((_, index) => (
-                <button 
-                  key={index}
-                  className={`${styles.testimonialDot} ${index === activeTestimonial ? styles.activeDot : ''}`}
-                  onClick={() => setActiveTestimonial(index)}
-                  aria-label={`View testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
