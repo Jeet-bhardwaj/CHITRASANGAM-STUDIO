@@ -287,7 +287,7 @@ function Home() {
             transition={{ duration: 0.8 }}
             className="flex flex-wrap items-center"
           >
-            <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
+            <div className="">
               <div className={styles.aboutVideoContainer}>
                 <video 
                   ref={videoRef}
@@ -340,7 +340,7 @@ function Home() {
 
       {/* Services Section */}
       <section className={styles.servicesSection}>
-        <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="max-w-7xl max- mx-auto px-6 py-20">
           <h2 className={`${styles.sectionTitle} text-center mb-16`}>Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {services.map((service, index) => (

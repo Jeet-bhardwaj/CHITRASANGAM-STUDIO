@@ -247,8 +247,16 @@
 
 /* Services Section */
 .servicesSection {
-  background-color: #f9f9f9;
+  background-color: #40826D;
   padding: 3rem 0;
+}
+
+/* Container styles */
+.servicesContainer {
+  max-width: 600px;
+  max-height: 600px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .serviceCard {
@@ -258,6 +266,7 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px; /* Added to ensure cards don't overflow max-height */
 }
 
 .serviceCard:hover {
@@ -279,11 +288,11 @@
 
 .serviceIcon {
   margin-bottom: 1rem;
-  color: #ff4081;
+  color: #40826D; /* Matching icon color with background */
 }
 
 .serviceLink {
-  color: #ff4081;
+  color: #40826D; /* Matching link color */
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
@@ -292,7 +301,7 @@
 }
 
 .serviceLink:hover {
-  color: #e03070;
+  color: #2E5E4E; /* Darker shade for hover state */
 }
 
 /* Portfolio Section */
@@ -303,6 +312,8 @@
 
 .videoCard {
   background: white;
+  max-width: 600px;
+  max-height: 600px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
