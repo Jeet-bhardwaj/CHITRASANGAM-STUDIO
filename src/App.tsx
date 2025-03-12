@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 import Maternity from './pages/Maternity';
 import Birthday from './pages/Birthday';
 import About from './pages/About';
+import FAQ from './pages/FAQ';
 const App = () => {
   // const [loading, setLoading] = useState(true);
 
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/maternity" element={<Maternity />} />
           <Route path="/birthday" element={<Birthday />} />
           <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </Layout>
     </Router>

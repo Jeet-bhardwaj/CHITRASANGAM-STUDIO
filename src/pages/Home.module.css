@@ -249,6 +249,7 @@
 .servicesSection {
   background-color: #40826D;
   padding: 3rem 0;
+  width: 100%;
 }
 
 /* Container styles */
@@ -257,6 +258,7 @@
   max-height: 600px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  overflow-y: auto; /* Added for scrolling if content exceeds max-height */
 }
 
 .serviceCard {
@@ -597,6 +599,24 @@
     height: 35px;
     font-size: 16px;
   }
+
+  .servicesContainer {
+    max-width: 100%;
+    max-height: 500px;
+    padding: 0 1rem;
+  }
+
+  .serviceCard {
+    padding: 1.5rem;
+  }
+
+  .serviceCard h3 {
+    font-size: 1.3rem;
+  }
+
+  .serviceCard p {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -636,4 +656,73 @@
     height: 30px;
     font-size: 14px;
   }
+
+  .servicesContainer {
+    max-height: 400px;
+    padding: 0 0.8rem;
+  }
+
+  .serviceCard {
+    padding: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .serviceCard h3 {
+    font-size: 1.2rem;
+    margin: 1rem 0 0.8rem;
+  }
+
+  .serviceCard p {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .serviceIcon {
+    transform: scale(0.9);
+  }
+}
+
+/* For very small devices */
+@media (max-width: 320px) {
+  .servicesContainer {
+    max-height: 350px;
+    padding: 0 0.5rem;
+  }
+
+  .serviceCard {
+    padding: 1rem;
+  }
+
+  .serviceCard h3 {
+    font-size: 1.1rem;
+  }
+
+  .serviceCard p {
+    font-size: 0.8rem;
+  }
+}
+
+/* For larger screens */
+@media (min-width: 1024px) {
+  .servicesContainer {
+    padding: 0 2rem;
+  }
+}
+
+/* Custom scrollbar for the container */
+.servicesContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.servicesContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.servicesContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.servicesContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 } 

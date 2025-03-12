@@ -1,0 +1,258 @@
+.faqContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  min-height: 80vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #40826D;
+}
+
+.subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faqItem {
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.faqItem.active {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #40826D;
+}
+
+.faqQuestion {
+  width: 100%;
+  padding: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: white;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.faqQuestion:hover {
+  background-color: #f9f9f9;
+}
+
+.faqItem.active .faqQuestion {
+  border-bottom: 1px solid #eee;
+  color: #40826D;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  color: #40826D;
+}
+
+.faqAnswer {
+  padding: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  background-color: white;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.faqImageContainer {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 500px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.faqImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.imageCollage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.imageCollage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contactSection {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+
+.contactSection h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.contactSection p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contactButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: #40826D;
+  color: white;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #336a58;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(64, 130, 109, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .faqImageContainer {
+    min-height: 400px;
+    order: -1;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .faqContainer {
+    padding: 3rem 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .faqQuestion {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  .faqAnswer {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+  
+  .contactSection {
+    padding: 2rem 1rem;
+  }
+  
+  .contactSection h2 {
+    font-size: 1.8rem;
+  }
+  
+  .contactSection p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqContainer {
+    padding: 2rem 1rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .faqImageContainer {
+    min-height: 300px;
+  }
+  
+  .contactButton {
+    padding: 0.8rem 2rem;
+  }
+} 
