@@ -8,23 +8,23 @@ const Weeding: React.FC = () => {
     
     // Carousel wedding photos from local directory
     const carouselImages = [
-        "/Images & Videos/Wedding/Wedding_1.jpg",
-        "/Images & Videos/Wedding/Wedding_2.jpg",
-        "/Images & Videos/Wedding/Wedding_3.jpg",
-        "/Images & Videos/Wedding/Wedding_4.jpg",
-        "/Images & Videos/Wedding/Wedding_5.jpg",
+        "/Images & Videos/Wedding/carouselImages/carouselImages_1.JPG",
+        // "/Images & Videos/Wedding/carouselImages/carouselImages_2.jpg",
+        // "/Images & Videos/Wedding/carouselImages/carouselImages_3.jpg",
+        // "/Images & Videos/Wedding/carouselImages/carouselImages_4.jpg",
+        // "/Images & Videos/Wedding/carouselImages/carouselImages_5.jpg",
     ];
 
     // Gallery images - wedding photography showcase
     const weddingImages = [
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_93tVsfPl3-HSLIeNbavpBWZ8wNpMry8GX7z7whlpU1L1967XfeOvzjo&s",
-        "https://t3.ftcdn.net/jpg/07/67/15/78/360_F_767157870_nFwgBHuxZusnCwePm4plBYmir6e5Qh4A.jpg",
-        "https://media.istockphoto.com/id/866987706/photo/indian-wedding-hands.jpg?s=612x612&w=0&k=20&c=6L-u9qhFPv9MjDnF4UK4AqjVbDKM4_8Xad72IHhwPZE=",
-        "https://media-api.xogrp.com/images/f4570601-a1e6-4802-86fb-ad9e988066fe~rs_768.h",
-        "https://www.ptaufiqphotography.com/wp-content/uploads/2024/06/ptaufiq-indian-wedding-rajkot-India-ceremony-couple-portraits.jpg",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-zB5ASXfOA7Z3F_49_QdnXA7_sc1b4QyRQxyNueWI578TNhWq20HiYWSK0Xlb8dY25jQ&usqp=CAU",
-        "https://assets.minted.com/image/upload/f_auto,q_auto/Minted_Onsite_Assets/2022/LP/IndianWeddingTraditions_220831_Image01.jpg",
-        "https://www.brides.com/thmb/JgD0sfveJXGR6Vwh-c2Yriw6Z0c=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Main-Hindu-Wedding-Traditions-Stephanie-Velez-6cf14a902ea947c09dc0722d29a9224a.jpg"
+        "/Images & Videos/Wedding/weddingImages/weddingImages_1.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_2.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_3.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_4.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_5.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_6.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_7.JPG",
+        "/Images & Videos/Wedding/weddingImages/weddingImages_8.JPG",
     ];
 
     // Service packages

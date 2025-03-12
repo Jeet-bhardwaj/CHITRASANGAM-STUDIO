@@ -1,0 +1,509 @@
+/* Main Container */
+.container {
+  background-color: #fff;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.heroTitle {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, #ff69b4, #9370db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: float-text 3s ease-in-out infinite;
+}
+
+.heroSubtitle {
+  font-size: 2rem;
+  font-weight: 400;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  color: white;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Floating animation for header */
+@keyframes float-text {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Confetti animation */
+.confetti {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-image: url('/Images & Videos/confetti-background.png');
+  background-size: cover;
+  opacity: 0.6;
+  z-index: -1;
+  animation: fall 15s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-5%); }
+  100% { transform: translateY(5%); }
+}
+
+/* Introduction Section */
+.introduction {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-top: -4rem;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+  color: #333;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(to right, #ff69b4, #9370db);
+  bottom: -10px;
+  left: 25%;
+  border-radius: 2px;
+}
+
+.introText {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.highlight {
+  color: #ff69b4;
+  font-weight: 600;
+}
+
+.birthdayStats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  text-align: center;
+  padding: 1.5rem;
+  min-width: 200px;
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #9370db;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Carousel Section */
+.carouselSection {
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.carouselTrack {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.carouselSlide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 105, 180, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  z-index: 2;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.carouselButton:hover {
+  background-color: rgba(255, 105, 180, 0.9);
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+}
+
+.carouselPrev {
+  left: 20px;
+}
+
+.carouselNext {
+  right: 20px;
+}
+
+.carouselDots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carouselDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  background-color: #ff69b4;
+  transform: scale(1.2);
+}
+
+/* Gallery Section */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+
+.image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Services Section */
+.services {
+  background-color: #f9f4f9;
+  padding: 5rem 2rem;
+  margin: 4rem 0;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.serviceCard {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.serviceCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.serviceIcon {
+  font-size: 2.5rem;
+  color: #ff69b4;
+  margin-bottom: 1.5rem;
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.serviceDescription {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Special Events Section */
+.specialEvents {
+  padding: 5rem 2rem;
+  background: linear-gradient(to right, #ff69b4, #9370db);
+  color: white;
+}
+
+.specialEventsContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.specialEventsContent h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.milestonesContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.milestone {
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  width: 250px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.milestone:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.milestoneIcon {
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: white;
+  color: #ff69b4;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.milestone h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.milestone p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Testimonial Section */
+.quote {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #555;
+  position: relative;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.quote::before,
+.quote::after {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  color: #ff69b4;
+  opacity: 0.3;
+}
+
+.quote::before {
+  top: 10px;
+  left: 20px;
+}
+
+.quote::after {
+  bottom: -20px;
+  right: 20px;
+}
+
+.quote footer {
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #9370db;
+}
+
+/* Call to Action Section */
+.cta {
+  background-color: #9370db;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.ctaText {
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.ctaButton {
+  background-color: white;
+  color: #9370db;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ctaButton:hover {
+  background-color: #ff69b4;
+  color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .specialEventsContent {
+    padding: 2rem 1rem;
+  }
+  
+  .milestonesContainer {
+    justify-content: center;
+  }
+  
+  .carouselContainer {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+  
+  .statItem {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .carouselContainer {
+    height: 400px;
+  }
+  
+  .quote {
+    padding: 2rem 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .quote::before,
+  .quote::after {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.2rem;
+  }
+  
+  .gallery {
+    gap: 15px;
+    padding: 0 1rem;
+  }
+  
+  .image {
+    height: 250px;
+  }
+  
+  .carouselContainer {
+    height: 300px;
+  }
+  
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+  }
+}

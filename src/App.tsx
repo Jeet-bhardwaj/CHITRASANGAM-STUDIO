@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Wedding from './pages/Weeding';
 import Layout from './components/Layout';
 import Maternity from './pages/Maternity';
+import Birthday from './pages/Birthday';
 const App = () => {
   // const [loading, setLoading] = useState(true);
 
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/wedding" element={<Wedding />} />
           <Route path="/maternity" element={<Maternity />} />
+          <Route path="/birthday" element={<Birthday />} />
         </Routes>
       </Layout>
     </Router>
