@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaQuoteLeft, FaQuoteRight, FaArrowRight } from 'react-icons/fa';
-import { Phone, Mail, MapPin, Clock, Users, Camera, Cake, Calendar, Baby, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby} from 'lucide-react';
 import styles from './Home.module.css';
 
 function Home() {
