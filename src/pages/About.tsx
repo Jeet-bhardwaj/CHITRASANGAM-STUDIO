@@ -12,11 +12,11 @@ function About() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <img src="/path-to-image1.jpg" alt="Portrait 1" className={styles.gridImage} />
-          <img src="/path-to-image2.jpg" alt="Portrait 2" className={styles.gridImage} />
-          <img src="/path-to-image3.jpg" alt="Portrait 3" className={styles.gridImage} />
-          <img src="/path-to-image4.jpg" alt="Portrait 4" className={styles.gridImage} />
-          <img src="/path-to-image5.jpg" alt="Portrait 5" className={styles.gridImage} />
+          <img src="/Images & Videos/About/About_1.jpg" alt="Portrait 1" className={styles.gridImage} />
+          <img src="/Images & Videos/About/About_2.jpg" alt="Portrait 2" className={styles.gridImage} />
+          <img src="/Images & Videos/About/About_3.jpg" alt="Portrait 3" className={styles.gridImage} />
+          <img src="/Images & Videos/About/About_4.jpg" alt="Portrait 4" className={styles.gridImage} />
+          <img src="/Images & Videos/About/About_5.jpg" alt="Portrait 5" className={styles.gridImage} />
           <div className={styles.aboutOverlay}>ABOUT</div>
         </motion.div>
       </section>
@@ -111,8 +111,8 @@ function About() {
       <section className={styles.instagramSection}>
         <h2 className={styles.instagramTitle}>see the latest on</h2>
         <h3 className={styles.instagramHandle}>INSTAGRAM</h3>
-        <a href="https://instagram.com/kathrynhyslopphotography" className={styles.instagramLink}>
-          @KATHRYNHYSLOPPHOTOGRAPHY
+        <a href="https://www.instagram.com/chitrasangamstudio.123" className={styles.instagramLink}>
+          @chitrasangam.123
         </a>
         <div className={styles.instagramGrid}>
           {/* Add your Instagram feed images here */}

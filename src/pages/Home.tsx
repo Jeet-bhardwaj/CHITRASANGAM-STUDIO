@@ -201,7 +201,7 @@ function Home() {
             <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
               <div className={styles.aboutImageContainer}>
                 <img 
-                  src="/Images & Videos/about-studio.jpg" 
+                  src="/Images & Videos/HomePhotos/Home_1.jpg" 
                   alt="Studio Photography" 
                   className={styles.aboutImage}
                 />
