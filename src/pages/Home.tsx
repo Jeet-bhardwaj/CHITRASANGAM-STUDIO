@@ -1,9 +1,9 @@
-import  { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaQuoteLeft, FaQuoteRight, FaArrowRight } from 'react-icons/fa';
-import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby} from 'lucide-react';
+import { FaQuoteLeft, FaQuoteRight, FaArrowRight, FaInstagram, FaYoutube, FaFacebookF } from 'react-icons/fa';
+import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby, Heart, Camera, Award } from 'lucide-react';
 import styles from './Home.module.css';
 import HomeWedding from '../components/HomeWedding';
 
@@ -11,31 +11,31 @@ function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselImages] = useState([
     {
-      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_5.JPG',
+      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG',
       text: 'CAPTURING TIMELESS MOMENTS'
     },
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG ',
-      // text: '"SHE GETS THE PICTURES YOU NEVER KNEW YOU NEEDED"'
+      text: 'CREATING MEMORIES THAT LAST FOREVER'
     },
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
-      // text: 'CAPTURING TIMELESS MOMENTS'
+      text: 'EVERY MOMENT TELLS A STORY'
     },
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
-      // text: 'CAPTURING TIMELESS MOMENTS'
+      text: 'TURNING MOMENTS INTO MASTERPIECES'
     },
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
-      // text: 'CAPTURING TIMELESS MOMENTS'
+      text: 'PREMIUM PHOTOGRAPHY SERVICES'
     },
-    // Add more slides with their respective texts
   ]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
-
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  
   // Animation effect when sections come into view
   useEffect(() => {
     if (inView) {
@@ -61,6 +61,14 @@ function Home() {
     return () => clearInterval(timer);
   }, [carouselImages.length]);
 
+  // Auto-rotate testimonials
+  useEffect(() => {
+    const testimonialsTimer = setInterval(() => {
+      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
+    }, 8000);
+    
+    return () => clearInterval(testimonialsTimer);
+  }, []);
 
   // Services offered
   const services = [
@@ -85,10 +93,37 @@ function Home() {
       description: "Creating timeless family portraits that capture authentic connections and joy."
     }
   ];
+  
+  // Enhanced testimonials
+  const testimonials = [
+    {
+      quote: "Chitrasangam Studio captured our wedding day perfectly. The attention to detail and the ability to capture candid moments exceeded our expectations. We couldn't be happier with our photos!",
+      name: "Priya & Rahul",
+      event: "Wedding Photography"
+    },
+    {
+      quote: "My maternity photoshoot was such a beautiful experience. The photographer made me feel comfortable and confident. The photos are absolutely stunning and capture this special time perfectly.",
+      name: "Anjali Sharma",
+      event: "Maternity Session"
+    },
+    {
+      quote: "We've used Chitrasangam for all our family portraits and they never disappoint. They have a magical way of capturing everyone at their best, even our active toddler!",
+      name: "The Patels",
+      event: "Family Portraits"
+    }
+  ];
+  
+  // Featured achievements
+  const achievements = [
+    { number: "10+", text: "Years Experience" },
+    { number: "1500+", text: "Happy Clients" },
+    { number: "25K+", text: "Photos Delivered" },
+    { number: "150+", text: "Wedding Events" }
+  ];
 
   return (
     <div className={styles.homeContainer}>
-      {/* Hero Section with Carousel */}
+      {/* Hero Section with Enhanced Carousel */}
       <section className={styles.heroSection}>
         <div className={styles.carouselContainer}>
           {/* Previous Button */}
@@ -97,9 +132,33 @@ function Home() {
             onClick={() => setCurrentSlide((prev) => 
               prev === 0 ? carouselImages.length - 1 : prev - 1
             )}
+            aria-label="Previous slide"
           >
             <span>←</span>
           </button>
+
+          {/* Carousel Images with Text Overlay */}
+          <div className={styles.carouselTrack} style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+            {carouselImages.map((slide, index) => (
+              <div key={index} className={styles.carouselSlide}>
+                <img src={slide.url} alt={`Slide ${index + 1}`} className={styles.carouselImage} />
+                <div className={styles.carouselOverlay}></div>
+                <motion.div 
+                  className={styles.carouselContent}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: currentSlide === index ? 1 : 0, y: currentSlide === index ? 0 : 20 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h1 className={styles.heroTitle}>{slide.text}</h1>
+                  <p className={styles.heroSubtitle}>Preserving life's precious moments through our lens</p>
+                  <div className={styles.heroCtas}>
+                    <a href="#contact" className={styles.ctaButton}>Book a Session</a>
+                    <Link to="/portfolio" className={styles.ctaButtonOutline}>View Portfolio</Link>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+          </div>
 
           {/* Next Button */}
           <button 
@@ -107,43 +166,30 @@ function Home() {
             onClick={() => setCurrentSlide((prev) => 
               (prev + 1) % carouselImages.length
             )}
+            aria-label="Next slide"
           >
             <span>→</span>
           </button>
-
-          {carouselImages.map((slide, index) => (
-            <motion.div
-              key={index}
-              className={styles.carouselSlide}
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: currentSlide === index ? 1 : 0,
-                scale: currentSlide === index ? 1 : 1.1
-              }}
-              transition={{ duration: 1.2 }}
-            >
-              <img 
-                src={slide.url} 
-                alt={`Slide ${index + 1}`} 
-                className={styles.carouselImage}
+          
+          {/* Carousel Indicators */}
+          <div className={styles.carouselIndicators}>
+            {carouselImages.map((_, index) => (
+              <button 
+                key={index} 
+                className={`${styles.carouselIndicator} ${currentSlide === index ? styles.activeIndicator : ''}`}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
               />
-              <div className={styles.overlay}></div>
-              {currentSlide === index && (
-                <motion.div 
-                  className={styles.slideText}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                >
-                  {slide.text}
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Add HomeWedding component here */}
       <HomeWedding />
-      {/* Behind the scenes  */}
+
+
+      {/* Behind the scenes */}
       <section className={styles.aboutSection}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div 
@@ -156,6 +202,7 @@ function Home() {
             <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
               <div className={styles.aboutVideoContainer}>
                 <video 
+                  ref={videoRef}
                   src="/Images & Videos/About/BTS.mp4" 
                   className={styles.aboutVideo}
                   controls
@@ -201,13 +248,15 @@ function Home() {
         </div>
       </section>
 
+      
+
       {/* Services Section */}
       <section className={styles.servicesSection}>
         <div className="max-w-7xl mx-auto px-6 py-20">
-          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Our Photography Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Our Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {services.map((service, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className={styles.serviceCard}
                 initial={{ opacity: 0, y: 30 }}
@@ -220,17 +269,42 @@ function Home() {
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
-                <Link 
-                  to={`/${service.title.split(' ')[0].toLowerCase()}`} 
-                  className={styles.serviceLink}
-                >
-                  Explore {service.title}
+                <Link to={`/services#${service.title.toLowerCase().replace(/\s/g, '-')}`} className={styles.serviceLink}>
+                  Learn more
                 </Link>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-16">
+            <Link to="/services" className={styles.ctaButton}>
+              View All Services
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Achievements Section */}
+      <section className={styles.achievementsSection}>
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {achievements.map((achievement, index) => (
+              <motion.div 
+                key={index}
+                className={styles.achievementItem}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <span className={styles.achievementNumber}>{achievement.number}</span>
+                <p className={styles.achievementText}>{achievement.text}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      
 
       {/* Featured Work / Portfolio */}
       <section className={styles.portfolioSection}>
@@ -479,100 +553,200 @@ function Home() {
           </div>
         </div>
       </section>
-      
 
-      {/* Contact Section */}
-      <section id="contact" className={styles.contactSection}>
-        <div className="max-w-6xl mx-auto px-6 py-24">
-          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Contact Us</h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className={styles.contactInfo}>
-              <h3>Get In Touch</h3>
-              <p className="mb-8">We'd love to hear from you! Whether you're ready to book a session or just have questions, reach out and we'll respond promptly.</p>
-              
-              <div className={styles.contactItem}>
-                <Phone className="w-6 h-6" />
-                <span>+91 9876543210</span>
-              </div>
-              <div className={styles.contactItem}>
-                <Mail className="w-6 h-6" />
-                <span>info@chitrasangamstudio.com</span>
-              </div>
-              <div className={styles.contactItem}>
-                <MapPin className="w-6 h-6" />
-                <span>123 Photography Lane, Mumbai, Maharashtra 400001</span>
-              </div>
-              <div className={styles.contactItem}>
-                <Clock className="w-6 h-6" />
-                <span>Studio Hours: Mon-Sat: 10AM-7PM</span>
-              </div>
-              
-              <div className={styles.socialLinks}>
-                <a href="#" className={styles.socialIcon} aria-label="Facebook">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className={styles.socialIcon} aria-label="Instagram">
-                  <i className="fab fa-instagram"></i>
-                </a>
-                <a href="#" className={styles.socialIcon} aria-label="Twitter">
-                  <i className="fab fa-twitter"></i>
-                </a>
-              </div>
+      {/* Enhanced Testimonial Section */}
+      <section className={styles.testimonialSection}>
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Client Testimonials</h2>
+          
+          <div className={styles.testimonialContainer}>
+            <div 
+              className={styles.testimonialTrack} 
+              style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className={styles.testimonialSlide}>
+                  <motion.div 
+                    className={styles.testimonialContent}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className={styles.quoteIcon}>
+                      <FaQuoteLeft />
+                    </div>
+                    <p className={styles.testimonialQuote}>{testimonial.quote}</p>
+                    <div className={styles.testimonialAuthor}>
+                      <p className={styles.testimonialName}>{testimonial.name}</p>
+                      <p className={styles.testimonialEvent}>{testimonial.event}</p>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
             </div>
             
-            <form className={styles.contactForm}>
-              <div className={styles.formGroup}>
-                <label htmlFor="name">Your Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Enter your full name"
-                  className={styles.formInput}
+            <div className={styles.testimonialDots}>
+              {testimonials.map((_, index) => (
+                <button 
+                  key={index}
+                  className={`${styles.testimonialDot} ${index === activeTestimonial ? styles.activeDot : ''}`}
+                  onClick={() => setActiveTestimonial(index)}
+                  aria-label={`View testimonial ${index + 1}`}
                 />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="email">Your Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email address"
-                  className={styles.formInput}
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="phone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  placeholder="Enter your phone number"
-                  className={styles.formInput}
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="service">Service Interested In</label>
-                <select id="service" className={styles.formInput}>
-                  <option value="">Select a service...</option>
-                  <option value="wedding">Wedding Photography</option>
-                  <option value="maternity">Maternity Photography</option>
-                  <option value="birthday">Birthday Photography</option>
-                  <option value="family">Family Portraits</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="message">Your Message</label>
-                <textarea
-                  id="message"
-                  placeholder="Tell us about your photography needs..."
-                  rows={4}
-                  className={styles.formTextarea}
-                ></textarea>
-              </div>
-              <button type="submit" className={styles.submitButton}>
-                Send Message
-              </button>
-            </form>
+              ))}
+            </div>
           </div>
+        </div>
+      </section>
+      
+      {/* Instagram Feed Section - NEW */}
+      <section className={styles.instagramSection}>
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <h2 className={`${styles.sectionTitle} text-center mb-8`}>Follow Us on Instagram</h2>
+          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+            Stay connected with our latest work and behind-the-scenes moments
+          </p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5">
+            {/* Sample Instagram posts - replace with real Instagram API integration or images */}
+            {[1, 2, 3, 4, 5, 6].map((item) => (
+              <motion.a
+                key={item}
+                href="https://instagram.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.instagramItem}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: item * 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <img 
+                  src={`/Images & Videos/HomePhotos/Instagram/insta_${item}.jpg`} 
+                  alt={`Instagram post ${item}`} 
+                  className={styles.instagramImage} 
+                />
+                <div className={styles.instagramOverlay}>
+                  <FaInstagram className="text-white text-2xl" />
+                </div>
+              </motion.a>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.socialButton}
+            >
+              <FaInstagram className="mr-2" /> Follow @chitrasangamstudio
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Improved Contact Section */}
+      <section id="contact" className={styles.contactSection}>
+        <div className="max-w-6xl mx-auto px-6 py-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <h2 className={`${styles.sectionTitle} text-center mb-16`}>Contact Us</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className={styles.contactInfo}>
+                <h3>Get In Touch</h3>
+                <p className="mb-8">We'd love to hear from you! Whether you're ready to book a session or just have questions, reach out and we'll respond promptly.</p>
+                
+                <div className={styles.contactItem}>
+                  <Phone className="w-6 h-6" />
+                  <span>+91 9876543210</span>
+                </div>
+                <div className={styles.contactItem}>
+                  <Mail className="w-6 h-6" />
+                  <span>info@chitrasangamstudio.com</span>
+                </div>
+                <div className={styles.contactItem}>
+                  <MapPin className="w-6 h-6" />
+                  <span>123 Photography Lane, Mumbai, Maharashtra 400001</span>
+                </div>
+                <div className={styles.contactItem}>
+                  <Clock className="w-6 h-6" />
+                  <span>Studio Hours: Mon-Sat: 10AM-7PM</span>
+                </div>
+                
+                <div className={styles.socialLinks}>
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+                    <FaFacebookF />
+                  </a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+                    <FaInstagram />
+                  </a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="YouTube">
+                    <FaYoutube />
+                  </a>
+                </div>
+              </div>
+              
+              <form className={styles.contactForm}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="name">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    className={styles.formInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email address"
+                    className={styles.formInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    className={styles.formInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="service">Service Interested In</label>
+                  <select id="service" className={styles.formInput}>
+                    <option value="">Select a service...</option>
+                    <option value="wedding">Wedding Photography</option>
+                    <option value="maternity">Maternity Photography</option>
+                    <option value="birthday">Birthday Photography</option>
+                    <option value="family">Family Portraits</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="message">Your Message</label>
+                  <textarea
+                    id="message"
+                    placeholder="Tell us about your photography needs..."
+                    rows={4}
+                    className={styles.formTextarea}
+                  ></textarea>
+                </div>
+                <button type="submit" className={styles.submitButton}>
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
