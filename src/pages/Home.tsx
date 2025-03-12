@@ -5,13 +5,14 @@ import { useInView } from 'react-intersection-observer';
 import { FaQuoteLeft, FaQuoteRight, FaArrowRight } from 'react-icons/fa';
 import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby} from 'lucide-react';
 import styles from './Home.module.css';
+import HomeWedding from '../components/HomeWedding';
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselImages] = useState([
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_5.JPG',
-      // text: 'CAPTURING TIMELESS MOMENTS'
+      text: 'CAPTURING TIMELESS MOMENTS'
     },
     {
       url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG ',
@@ -60,52 +61,6 @@ function Home() {
     return () => clearInterval(timer);
   }, [carouselImages.length]);
 
-  // Portfolio categories
-  const portfolioCategories = [
-    {
-      name: "Wedding Photography",
-      description: "Capturing timeless moments of love and celebration on your special day.",
-      image: "/Images & Videos/Wedding/Wedding_1.jpg",
-      path: "/wedding"
-    },
-    {
-      name: "Maternity Sessions",
-      description: "Beautiful portraits celebrating the journey to motherhood.",
-      image: "/Images & Videos/Maternity/Maternity_1.jpg",
-      path: "/maternity"
-    },
-    {
-      name: "Birthday Celebrations",
-      description: "Preserving joyful milestones and special birthday memories.",
-      image: "/Images & Videos/Birthday/Birthday_1.jpg",
-      path: "/birthday"
-    },
-    {
-      name: "Family Portraits",
-      description: "Authentic images that showcase the unique bond of your family.",
-      image: "/Images & Videos/Family/Family_1.jpg",
-      path: "/family"
-    }
-  ];
-
-  // Testimonials data
-  const testimonials = [
-    {
-      quote: "We couldn't be happier with our wedding photos! Every special moment was captured beautifully, and the attention to detail was outstanding.",
-      name: "Priya & Rahul",
-      event: "Wedding Photography"
-    },
-    {
-      quote: "My maternity photoshoot was such a wonderful experience. The photographer made me feel beautiful and comfortable throughout the session.",
-      name: "Ananya S.",
-      event: "Maternity Session"
-    },
-    {
-      quote: "The photos from my daughter's birthday party captured all the joy and excitement. These are memories we'll treasure forever!",
-      name: "Deepak M.",
-      event: "Birthday Photography"
-    }
-  ];
 
   // Services offered
   const services = [
@@ -187,8 +142,8 @@ function Home() {
           ))}
         </div>
       </section>
-
-      {/* About Section */}
+      <HomeWedding />
+      {/* Behind the scenes  */}
       <section className={styles.aboutSection}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div 
@@ -199,18 +154,22 @@ function Home() {
             className="flex flex-wrap items-center"
           >
             <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
-              <div className={styles.aboutImageContainer}>
-                <img 
-                  src="/Images & Videos/HomePhotos/Home_1.jpg" 
-                  alt="Studio Photography" 
-                  className={styles.aboutImage}
+              <div className={styles.aboutVideoContainer}>
+                <video 
+                  src="/Images & Videos/About/BTS.mp4" 
+                  className={styles.aboutVideo}
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
-                <div className={styles.aboutImageOverlay}></div>
+                <div className={styles.aboutVideoOverlay}></div>
               </div>
             </div>
             
             <div className="w-full lg:w-1/2 lg:pl-16">
-              <h2 className={styles.sectionTitle}>About Our Studio</h2>
+              <h2 className={styles.sectionTitle}>Behind the Scenes</h2>
               <p className={styles.aboutText}>
                 Welcome to Chitrasangam Studio, where we transform fleeting moments into timeless memories. 
                 With our passionate team of photographers, we specialize in wedding, maternity, birthday, and family photography.
@@ -277,69 +236,250 @@ function Home() {
       <section className={styles.portfolioSection}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <h2 className={`${styles.sectionTitle} text-center mb-16`}>Featured Work</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {portfolioCategories.map((category, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <Link to={category.path} className={styles.portfolioCard}>
-                  <div className={styles.portfolioImageContainer}>
-                    <img src={category.image} alt={category.name} className={styles.portfolioImage} />
-                  </div>
-                  <div className={styles.portfolioContent}>
-                    <h3>{category.name}</h3>
-                    <p>{category.description}</p>
-                    <span className={styles.viewMore}>View Gallery</span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Video 1 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/OGUouW3oS4o" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 2 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/-Zo6nrxH2C8" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 3 - REPLACED */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/udnmCXG2xs4" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 4 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/rw9aCM6CVkU" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 5 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/Nu2e1jmQMlY" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 6 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/8Hv9eAanycY" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 7 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/n5Ag44CClBk" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 8 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/BgbbJOVq0Mc" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 9 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/cxTkyeqICqI" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* Video 10 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/MwRK9D8sKV0" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* New Video 11 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/yLmYD08c0Pc" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+            
+            {/* New Video 12 */}
+            <motion.div
+              className={styles.videoCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className={styles.responsiveVideoWrapper}>
+                <iframe 
+                  src="https://www.youtube.com/embed/44ynLnkqPpI" 
+                  title="Photography Session"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <a 
+              href="https://www.youtube.com/playlist?list=PLlPsRjogGFzVDoi0j4AKG2eUGWLLpBwSp" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
+              View All Videos on YouTube
+            </a>
           </div>
         </div>
       </section>
       
-      {/* Testimonials */}
-      <section className={styles.testimonialSection}>
-        <div className="max-w-5xl mx-auto px-6 py-24">
-          <h2 className={`${styles.sectionTitle} text-center mb-16`}>Happy Clients</h2>
-          
-          <div className={styles.testimonialContainer}>
-            <div 
-              className={styles.testimonialTrack} 
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className={styles.testimonialSlide}>
-                  <div className={styles.testimonialContent}>
-                    <FaQuoteLeft className={styles.quoteIcon} />
-                    <p className={styles.testimonialQuote}>{testimonial.quote}</p>
-                    <FaQuoteRight className={styles.quoteIcon} />
-                    <div className={styles.testimonialAuthor}>
-                      <p className={styles.testimonialName}>{testimonial.name}</p>
-                      <p className={styles.testimonialEvent}>{testimonial.event}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className={styles.testimonialDots}>
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.testimonialDot} ${index === currentSlide ? styles.activeDot : ''}`}
-                  onClick={() => setCurrentSlide(index)}
-                  aria-label={`View testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section id="contact" className={styles.contactSection}>

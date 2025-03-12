@@ -179,8 +179,9 @@
 
 .ctaButton {
   background: linear-gradient(45deg, #ff4081 30%, #ff0055 90%);
-  padding: 1.2rem 3rem;
-  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: white;
@@ -191,6 +192,7 @@
   display: inline-block;
   text-decoration: none;
   box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+  margin-top: 2rem;
 }
 
 .ctaButton:hover {
@@ -366,6 +368,7 @@
 /* Portfolio Section */
 .portfolioSection {
   background-color: #f9f9f9;
+  padding: 3rem 0;
 }
 
 .portfolioCard {
@@ -658,6 +661,15 @@
   .contactItem {
     font-size: 0.9rem;
   }
+  
+  .videoCard {
+    margin-bottom: 20px;
+  }
+  
+  .ctaButton {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -692,5 +704,94 @@
   
   .testimonialQuote {
     font-size: 1rem;
+  }
+  
+  .videoCard {
+    margin-bottom: 15px;
+  }
+  
+  .responsiveVideoWrapper {
+    border-radius: 6px;
+  }
+}
+
+/* Individual Video Card Styles */
+.videoCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.videoCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.responsiveVideoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.responsiveVideoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Behind the Scenes Video - Decreased Size */
+.aboutVideoContainer {
+  position: relative;
+  width: 90%; /* Reduced from 100% */
+  max-width: 600px; /* Adding max-width for large screens */
+  max-height: 600px; /* Adding max-width for large screens */
+  margin: 0 auto; /* Center the container */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.aboutVideoContainer:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.aboutVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.aboutVideoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border-radius: 20px;
+  pointer-events: none; /* Allows clicks to pass through to the video */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .aboutVideoContainer {
+    width: 100%;
+    max-width: 450px;
   }
 } 
