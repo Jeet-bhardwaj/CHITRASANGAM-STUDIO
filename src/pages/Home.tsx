@@ -9,11 +9,27 @@ import styles from './Home.module.css';
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselImages] = useState([
-    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG',
-    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
-    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
-    '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
-    // Add more images as needed
+    {
+      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_5.JPG',
+      // text: 'CAPTURING TIMELESS MOMENTS'
+    },
+    {
+      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_1.JPG ',
+      // text: '"SHE GETS THE PICTURES YOU NEVER KNEW YOU NEEDED"'
+    },
+    {
+      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_2.JPG',
+      // text: 'CAPTURING TIMELESS MOMENTS'
+    },
+    {
+      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_3.JPG',
+      // text: 'CAPTURING TIMELESS MOMENTS'
+    },
+    {
+      url: '/Images & Videos/HomePhotos/Topcarousel/Topcarousel_4.JPG',
+      // text: 'CAPTURING TIMELESS MOMENTS'
+    },
+    // Add more slides with their respective texts
   ]);
   const videoRef = useRef<HTMLVideoElement>(null);
   const controls = useAnimation();
@@ -120,7 +136,27 @@ function Home() {
       {/* Hero Section with Carousel */}
       <section className={styles.heroSection}>
         <div className={styles.carouselContainer}>
-          {carouselImages.map((image, index) => (
+          {/* Previous Button */}
+          <button 
+            className={`${styles.carouselButton} ${styles.prevButton}`}
+            onClick={() => setCurrentSlide((prev) => 
+              prev === 0 ? carouselImages.length - 1 : prev - 1
+            )}
+          >
+            <span>←</span>
+          </button>
+
+          {/* Next Button */}
+          <button 
+            className={`${styles.carouselButton} ${styles.nextButton}`}
+            onClick={() => setCurrentSlide((prev) => 
+              (prev + 1) % carouselImages.length
+            )}
+          >
+            <span>→</span>
+          </button>
+
+          {carouselImages.map((slide, index) => (
             <motion.div
               key={index}
               className={styles.carouselSlide}
@@ -129,56 +165,26 @@ function Home() {
                 opacity: currentSlide === index ? 1 : 0,
                 scale: currentSlide === index ? 1 : 1.1
               }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 1.2 }}
             >
               <img 
-                src={image} 
+                src={slide.url} 
                 alt={`Slide ${index + 1}`} 
                 className={styles.carouselImage}
               />
+              <div className={styles.overlay}></div>
+              {currentSlide === index && (
+                <motion.div 
+                  className={styles.slideText}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  {slide.text}
+                </motion.div>
+              )}
             </motion.div>
           ))}
-          <div className={styles.overlay}></div>
-          
-          {/* Carousel Navigation */}
-          <div className={styles.carouselNav}>
-            {carouselImages.map((_, index) => (
-              <button
-                key={index}
-                className={`${styles.carouselDot} ${index === currentSlide ? styles.activeDot : ''}`}
-                onClick={() => setCurrentSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-        
-        <div className={styles.heroContent}>
-          <motion.h1 
-            className={styles.heroTitle}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            CHITRASANGAM STUDIO
-          </motion.h1>
-          <motion.p 
-            className={styles.heroSubtitle}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            Capturing Life's Beautiful Moments
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            <Link to="/contact" className={styles.ctaButton}>
-              Book a Session
-            </Link>
-          </motion.div>
         </div>
       </section>
 

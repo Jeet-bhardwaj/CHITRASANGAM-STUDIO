@@ -13,12 +13,9 @@
 
 /* Add new carousel styles */
 .carouselContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative;
   height: 100%;
-  z-index: 0;
+  width: 100%;
 }
 
 .carouselSlide {
@@ -27,6 +24,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
 }
 
 .carouselImage {
@@ -35,30 +33,97 @@
   object-fit: cover;
 }
 
-.carouselNav {
+.overlay {
   position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 1rem;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-.carouselDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 2px solid white;
+/* Carousel Navigation Buttons */
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
   cursor: pointer;
+  z-index: 10;
+  padding: 1rem;
   transition: all 0.3s ease;
-  padding: 0;
+  opacity: 0.7;
 }
 
-.carouselDot.activeDot {
-  background-color: white;
-  transform: scale(1.2);
+.carouselButton:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevButton {
+  left: 2rem;
+}
+
+.nextButton {
+  right: 2rem;
+}
+
+.carouselButton span {
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+/* Slide Text Styling */
+.slideText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 2;
+  width: 90%;
+  max-width: 800px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Add this in your HTML head to import the font */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap');
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slideText {
+    font-size: 2.5rem;
+  }
+  
+  .carouselButton {
+    font-size: 1.5rem;
+  }
+  
+  .carouselButton span {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideText {
+    font-size: 2rem;
+  }
 }
 
 /* Update overlay for better gradient */
