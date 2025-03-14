@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Facebook, Instagram, Tiktok } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Facebook, Instagram } from 'lucide-react';
 
 /**
  * Contact component that provides a form for users to send messages
@@ -87,9 +87,6 @@ const Contact = () => {
                                 </a>
                                 <a href="#" className="bg-gray-800 hover:bg-pink-500 transition duration-300 p-3 rounded-full">
                                     <i className="fab fa-instagram text-lg"></i>
-                                </a>
-                                <a href="#" className="bg-gray-800 hover:bg-pink-500 transition duration-300 p-3 rounded-full">
-                                    <i className="fab fa-tiktok text-lg"></i>
                                 </a>
                             </div>
                         </div>
