@@ -17,7 +17,7 @@ const HomeWedding = () => {
         </div>
 
         {/* Second Column */}
-        <div className={styles.columnTwo}>
+        <div className={`${styles.columnTwo} `}>
           <img src="/Images & Videos/Wedding/weddingImages/weddingImages_3.JPG" alt="Wedding 3" className={styles.imageLarge} />
         </div>
 

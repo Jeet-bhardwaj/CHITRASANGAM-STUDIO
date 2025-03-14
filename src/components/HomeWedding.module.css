@@ -40,6 +40,7 @@
     height: auto;
     object-fit: cover;
     border-radius: 8px;
+    transform-origin: center center;
 }
 
 .imageLarge {
@@ -47,6 +48,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    transform-origin: center center;
 }
 
 /* Column Layouts */
@@ -92,6 +94,23 @@
     text-align: center;
     position: relative;
     padding: 1rem 0;
+}
+
+/* Image rotation fixes */
+.rotateNormal {
+    transform: rotate(0deg);
+}
+
+.rotate90 {
+    transform: rotate(90deg);
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+}
+
+.rotate270 {
+    transform: rotate(270deg);
 }
 
 /* Responsive styles */
@@ -157,6 +176,7 @@
     
     .columnOne {
         grid-row: 1;
+        
     }
     
     .columnTwo {
