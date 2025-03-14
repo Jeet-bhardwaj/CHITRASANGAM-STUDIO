@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaArrowRight, FaInstagram, FaYoutube, FaFacebookF } from 'react-icons/fa';
+import { FaArrowRight, FaInstagram, FaYoutube, FaFacebookF, FaHeart, FaComment, FaCamera, FaUsers } from 'react-icons/fa';
 import { Phone, Mail, MapPin, Clock, Users, Cake, Calendar, Baby } from 'lucide-react';
 import styles from './Home.module.css';
 import HomeWedding from '../components/HomeWedding';
@@ -40,6 +40,7 @@ function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+  const navigate = useNavigate();
   
   // Animation effect when sections come into view
   useEffect(() => {
@@ -94,8 +95,8 @@ function Home() {
     },
     {
       icon: <Users className="w-16 h-16 text-pink-500" />,
-      title: "Family Portraits",
-      description: "Creating timeless family portraits that capture authentic connections and joy."
+      title: "New Born Baby",
+      description: "Creating timeless portraits that capture the innocence and wonder of your newborn baby."
     }
   ];
   
@@ -216,6 +217,19 @@ function Home() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  // Update the handleServiceClick function to handle all service types
+  const handleServiceClick = (title: string) => {
+    if (title === "Wedding Photography") {
+      navigate('/wedding');
+    } else if (title === "Maternity Sessions") {
+      navigate('/maternity');
+    } else if (title === "Birthday Photography") {
+      navigate('/birthday');
+    } else if (title === "New Born Baby") {
+      navigate('/newbornbaby');
+    }
   };
 
   return (
@@ -361,15 +375,14 @@ function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, amount: 0.3 }}
+                onClick={() => handleServiceClick(service.title)}
+                style={{ cursor: "pointer" }}
               >
                 <div className={styles.serviceIcon}>
                   {service.icon}
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
-                <Link to={`/services#${service.title.toLowerCase().replace(/\s/g, '-')}`} className={styles.serviceLink}>
-                  Learn more
-                </Link>
               </motion.div>
             ))}
           </div>
@@ -644,59 +657,217 @@ function Home() {
               href="https://www.youtube.com/playlist?list=PLlPsRjogGFzVDoi0j4AKG2eUGWLLpBwSp" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={styles.ctaButton}
+              className={styles.youtubeButton}
             >
-              View All Videos on YouTube
+              <FaYoutube /> View All Videos on YouTube
             </a>
           </div>
         </div>
       </section>
       
-      {/* Instagram Feed Section - NEW */}
+      {/* Enhanced Instagram Feed Section */}
       <section className={styles.instagramSection}>
         <div className="max-w-7xl mx-auto px-6 py-20">
-          <h2 className={`${styles.sectionTitle} text-center mb-8`}>Follow Us on Instagram</h2>
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-            Stay connected with our latest work and behind-the-scenes moments
-          </p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-5">
-            {/* Sample Instagram posts - replace with real Instagram API integration or images */}
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <motion.a
-                key={item}
-                href="https://instagram.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.instagramItem}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: item * 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img 
-                  src={`/Images & Videos/HomePhotos/Instagram/insta_${item}.jpg`} 
-                  alt={`Instagram post ${item}`} 
-                  className={styles.instagramImage} 
-                />
-                <div className={styles.instagramOverlay}>
-                  <FaInstagram className="text-white text-2xl" />
-                </div>
-              </motion.a>
-            ))}
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <span className={styles.instagramTag}>@chitrasangamstudio</span>
+              <h2 className={`${styles.sectionTitle} ${styles.scriptHeading} text-center mb-4`}>
+                Follow Us on Instagram
+              </h2>
+              <div className={styles.decorativeLine}>
+                <span><FaInstagram className="text-pink-500" /></span>
+              </div>
+              <p className="text-center text-gray-600 max-w-2xl mx-auto mt-6">
+                Get a glimpse of our creative process, behind-the-scenes moments, and our latest photography work
+              </p>
+            </motion.div>
           </div>
           
-          <div className="text-center mt-12">
+          {/* Profile Card - Show once at the top */}
+          <motion.div 
+            className={styles.instagramProfileCard}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <div className={styles.profileImage}>
+              <img 
+                src="/Images & Videos/HomePhotos/Instagram/profile.jpg" 
+                alt="Chitrasangam Studio" 
+                onError={(e) => {
+                  e.currentTarget.src = "https://via.placeholder.com/80";
+                }}
+              />
+            </div>
+            <div className={styles.profileInfo}>
+              <h3>chitrasangamstudio</h3>
+              <p>Professional Photography Service</p>
+            </div>
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/chitrasangamstudio/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={styles.socialButton}
+              className={styles.followButton}
             >
-              <FaInstagram className="mr-2" /> Follow @chitrasangamstudio
+              Follow
             </a>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+            {/* Custom Instagram Post Cards */}
+            <motion.div
+              className={styles.instagramCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+            >
+              <div className={styles.instagramEmbedWrapper}>
+                <div className={styles.instagramPostHeader}>
+                  <span className={styles.instagramType}>Photo</span>
+                  <span className={styles.instagramDate}>2 days ago</span>
+                </div>
+                <div className={styles.instagramEmbed}>
+                  <iframe
+                    src="https://www.instagram.com/p/DDRdrozzLDW/embed/captioned/"
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    scrolling="no"
+                    allowTransparency={true}
+                    title="Instagram Post 1"
+                    className={styles.hideHeader}
+                  ></iframe>
+                </div>
+                <div className={styles.instagramInteraction}>
+                  <div className={styles.instagramStats}>
+                    <span><FaHeart /> 120</span>
+                    <span><FaComment /> 15</span>
+                  </div>
+                  <a 
+                    href="https://www.instagram.com/p/DDRdrozzLDW/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles.viewOnIg}
+                  >
+                    View on Instagram
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className={styles.instagramCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+            >
+              <div className={styles.instagramEmbedWrapper}>
+                <div className={styles.instagramPostHeader}>
+                  <span className={styles.instagramType}>Reel</span>
+                  <span className={styles.instagramDate}>1 week ago</span>
+                </div>
+                <div className={styles.instagramEmbed}>
+                  <iframe
+                    src="https://www.instagram.com/reel/DDqdZXTTYYU/embed/captioned/"
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    scrolling="no"
+                    allowTransparency={true}
+                    title="Instagram Reel"
+                    className={styles.hideHeader}
+                  ></iframe>
+                </div>
+                <div className={styles.instagramInteraction}>
+                  <div className={styles.instagramStats}>
+                    <span><FaHeart /> 235</span>
+                    <span><FaComment /> 37</span>
+                  </div>
+                  <a 
+                    href="https://www.instagram.com/reel/DDqdZXTTYYU/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles.viewOnIg}
+                  >
+                    View on Instagram
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              className={styles.instagramCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+            >
+              <div className={styles.instagramEmbedWrapper}>
+                <div className={styles.instagramPostHeader}>
+                  <span className={styles.instagramType}>Photo</span>
+                  <span className={styles.instagramDate}>3 weeks ago</span>
+                </div>
+                <div className={styles.instagramEmbed}>
+                  <iframe
+                    src="https://www.instagram.com/p/DDRdrozzLDW/embed/captioned/"
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    scrolling="no"
+                    allowTransparency={true}
+                    title="Instagram Post 2"
+                    className={styles.hideHeader}
+                  ></iframe>
+                </div>
+                <div className={styles.instagramInteraction}>
+                  <div className={styles.instagramStats}>
+                    <span><FaHeart /> 185</span>
+                    <span><FaComment /> 23</span>
+                  </div>
+                  <a 
+                    href="https://www.instagram.com/p/DDRdrozzLDW/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles.viewOnIg}
+                  >
+                    View on Instagram
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
+          
+          <motion.div 
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <a 
+              href="https://www.instagram.com/chitrasangamstudio/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.enhancedSocialButton}
+            >
+              <FaInstagram className="mr-3 text-xl" /> 
+              <span>
+                <strong>See All Posts</strong>
+                <small>@chitrasangamstudio</small>
+              </span>
+            </a>
+          </motion.div>
         </div>
       </section>
 
