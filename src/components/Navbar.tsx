@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { ChevronDown, Camera, Calendar, Cake, Baby } from 'lucide-react';
+import { event } from '../utils/analytics';
 
 
 /**
@@ -104,6 +105,14 @@ const Navbar = () => {
      */
     const navigateTo = (path: string) => {
         navigate(path);
+        
+        // Track navigation event
+        event({
+            action: 'navigation',
+            category: 'User Interaction',
+            label: `Navigate to ${path}`,
+        });
+        
         // Close all menus after navigation for clean UI
         setMobileMenuOpen(false);
         setMobileDropdownOpen(false);

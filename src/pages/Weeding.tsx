@@ -3,6 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import styles from './Weeding.module.css';
 import { FaCamera, FaFilm, FaBook, FaArrowLeft, FaArrowRight, FaHeart } from 'react-icons/fa';
+import { event } from '../utils/analytics';
 
 const Weeding: React.FC = () => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -97,11 +98,37 @@ const Weeding: React.FC = () => {
     // Navigate to next slide
     const nextSlide = () => {
         setCurrentSlide(prevSlide => (prevSlide + 1) % carouselImages.length);
+        
+        // Track carousel navigation
+        event({
+            action: 'carousel_next',
+            category: 'User Interaction',
+            label: 'Wedding Carousel Next',
+        });
     };
 
     // Navigate to previous slide
     const prevSlide = () => {
         setCurrentSlide(prevSlide => (prevSlide - 1 + carouselImages.length) % carouselImages.length);
+        
+        // Track carousel navigation
+        event({
+            action: 'carousel_prev',
+            category: 'User Interaction',
+            label: 'Wedding Carousel Previous',
+        });
+    };
+
+    // Handle image view
+    const handleImageView = (image: string) => {
+        setSelectedImage(image);
+        
+        // Track image view
+        event({
+            action: 'view_image',
+            category: 'User Interaction',
+            label: `View Wedding Image: ${image.split('/').pop()}`,
+        });
     };
 
     return (
@@ -233,7 +260,7 @@ const Weeding: React.FC = () => {
                             src={image}
                             alt={`Indian Wedding ${index + 1}`}
                             className={styles.image}
-                            onClick={() => setSelectedImage(image)}
+                            onClick={() => handleImageView(image)}
                         />
                     ))}
                 </motion.div>

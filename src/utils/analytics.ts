@@ -1,5 +1,5 @@
 // Google Analytics Measurement ID
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Replace with your actual Google Analytics ID
+export const GA_MEASUREMENT_ID = 'G-REB005VSDV'; // Replace with your actual Google Analytics ID
 
 // Pageview tracking
 export const pageview = (url: string) => {

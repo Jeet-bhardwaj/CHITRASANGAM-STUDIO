@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import { Camera } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -10,11 +10,26 @@ import About from './pages/About';
 import FAQ from './pages/FAQ';
 import NewBornBaby from './pages/NewBornBaby';
 import Contact from './components/Contact';
+import { initGA, pageview } from './utils/analytics';
+
+// Analytics tracker component
+const RouteChangeTracker = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    pageview(location.pathname + location.search);
+  }, [location]);
+  
+  return null;
+};
 
 const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Initialize Google Analytics
+    initGA();
+    
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -52,6 +67,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Layout>
+      <RouteChangeTracker />
     </Router>
   );
 }

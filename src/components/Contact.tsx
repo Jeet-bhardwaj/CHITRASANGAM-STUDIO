@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Facebook, Instagram } from 'lucide-react';
+import { event } from '../utils/analytics';
 
 /**
  * Contact component that provides a form for users to send messages
@@ -24,6 +25,13 @@ const Contact = () => {
         
         // In a real application, you would send the form data to your backend here
         console.log({ name, email, phone, message });
+        
+        // Track form submission event
+        event({
+            action: 'submit_form',
+            category: 'Contact',
+            label: 'Contact Form Submission',
+        });
         
         // Show success message
         setIsSubmitted(true);
