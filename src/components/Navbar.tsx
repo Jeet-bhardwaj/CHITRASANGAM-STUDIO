@@ -111,7 +111,7 @@ const Navbar = () => {
 
     return (
         <nav className={`${styles.navbar} fixed top-0 left-0 w-full z-50`}>
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div className={`container mx-auto px-4 py-3 flex justify-between items-center ${styles.navbarInner}`}>
                 {/* Logo and Brand */}
                 <div className="text-white flex items-center">
                     <img 
