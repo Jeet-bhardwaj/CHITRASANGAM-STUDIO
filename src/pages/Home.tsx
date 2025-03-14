@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -219,8 +219,8 @@ function Home() {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
-  // Update the handleServiceClick function to handle all service types
-  const handleServiceClick = (title: string) => {
+  // Update the handleServiceClick function to use the correct path
+  const handleServiceClick = useCallback((title: string) => {
     if (title === "Wedding Photography") {
       navigate('/wedding');
     } else if (title === "Maternity Sessions") {
@@ -228,9 +228,9 @@ function Home() {
     } else if (title === "Birthday Photography") {
       navigate('/birthday');
     } else if (title === "New Born Baby") {
-      navigate('/newbornbaby');
+      navigate('/new-born-baby');
     }
-  };
+  }, [navigate]);
 
   return (
     <div className={styles.homeContainer}>
@@ -736,7 +736,7 @@ function Home() {
                 </div>
                 <div className={styles.instagramEmbed}>
                   <iframe
-                    src="https://www.instagram.com/p/DDRdrozzLDW/embed/captioned/"
+                    src="https://www.instagram.com/p/C2Pv2uDyMi-/embed/captioned/"
                     width="100%"
                     height="500"
                     frameBorder="0"
@@ -752,7 +752,7 @@ function Home() {
                     <span><FaComment /> 15</span>
                   </div>
                   <a 
-                    href="https://www.instagram.com/p/DDRdrozzLDW/" 
+                    href="https://www.instagram.com/p/C2Pv2uDyMi-/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className={styles.viewOnIg}
