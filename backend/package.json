@@ -1,0 +1,30 @@
+{
+  "name": "chitrasangam-studio",
+  "version": "1.0.0",
+  "description": "Backend for run frontend",
+  "keywords": [
+    "photography",
+    "studio",
+    "patna",
+    "wedding",
+    "maternity",
+    "birthday",
+    "newborn",
+    "professional"
+  ],
+  "homepage": "https://github.com/Jeet-bhardwaj/CHITRASANGAM-STUDIO#readme",
+  "bugs": {
+    "url": "https://github.com/Jeet-bhardwaj/CHITRASANGAM-STUDIO/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jeet-bhardwaj/CHITRASANGAM-STUDIO.git"
+  },
+  "license": "ISC",
+  "author": "Chitrasangam Studio",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  }
+}

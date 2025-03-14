@@ -1,8 +1,30 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "backend",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
+  "description": "Backend for run frontend",
+  "keywords": [
+    "photography",
+    "studio",
+    "patna",
+    "wedding",
+    "maternity",
+    "birthday",
+    "newborn",
+    "professional"
+  ],
+  "homepage": "https://github.com/Jeet-bhardwaj/CHITRASANGAM-STUDIO#readme",
+  "bugs": {
+    "url": "https://github.com/Jeet-bhardwaj/CHITRASANGAM-STUDIO/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jeet-bhardwaj/CHITRASANGAM-STUDIO.git"
+  },
+  "license": "MIT",
+  "author": "Chitrasangam Studio",
   "type": "module",
+  "main": "src/index.tsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
