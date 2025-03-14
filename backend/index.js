@@ -1,18 +1,13 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
-
-// Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Determine the build directory - one level up and then into dist
-const distPath = path.join(__dirname, '..', 'dist');
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
 
 // Initialize express app
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Determine the build directory
+const distPath = path.join(__dirname, '..', 'dist');
 
 // Check if dist directory exists
 if (!fs.existsSync(distPath)) {
