@@ -128,13 +128,13 @@ const Navbar = () => {
 
                 {/* Desktop Navigation - Hidden on mobile */}
                 <div className="hidden md:flex items-center space-x-6">
-                    <Link to="/" className="text-white uppercase hover:text-pink-500">Home</Link>
+                    <Link to="/" className="text-white uppercase hover:text-pink-500 tracking-wider font-medium text-sm">Home</Link>
                     
                     {/* Desktop Dropdown Menu Container */}
                     <div className="relative">
                         <button 
                             id="portfolioButton"
-                            className="text-white uppercase hover:text-pink-500 flex items-center"
+                            className="text-white uppercase hover:text-pink-500 tracking-wider font-medium text-sm flex items-center"
                             onMouseEnter={() => setDesktopDropdownOpen(true)}
                             onMouseLeave={() => setDesktopDropdownOpen(true)}
                         >
@@ -150,19 +150,19 @@ const Navbar = () => {
                                 onMouseEnter={() => setDesktopDropdownOpen(true)}
                                 onMouseLeave={() => setDesktopDropdownOpen(false)}
                             >
-                                <Link to="/wedding" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
+                                <Link to="/wedding" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center text-sm tracking-wide">
                                     <Camera className="mr-2 w-5 h-5" />
                                     <span>Wedding</span>
                                 </Link>
-                                <Link to="/new-born-baby" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
+                                <Link to="/new-born-baby" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center text-sm tracking-wide">
                                     <Baby className="mr-2 w-5 h-5" />
                                     <span>New Born Baby</span>
                                 </Link>
-                                <Link to="/birthday" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
+                                <Link to="/birthday" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center text-sm tracking-wide">
                                     <Cake className="mr-2 w-5 h-5" />
                                     <span>Birthday</span>
                                 </Link>
-                                <Link to="/maternity" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center">
+                                <Link to="/maternity" className="block px-4 py-2 text-white hover:bg-gray-800 flex items-center text-sm tracking-wide">
                                     <Baby className="mr-2 w-5 h-5" />
                                     <span>Maternity</span>
                                 </Link>
@@ -170,8 +170,8 @@ const Navbar = () => {
                         )}
                     </div>
                     
-                    <Link to="/about" className="text-white uppercase hover:text-pink-500">About</Link>
-                    <Link to="/faq" className="text-white uppercase hover:text-pink-500">FAQ</Link>
+                    <Link to="/about" className="text-white uppercase hover:text-pink-500 tracking-wider font-medium text-sm">About</Link>
+                    <Link to="/faq" className="text-white uppercase hover:text-pink-500 tracking-wider font-medium text-sm">FAQ</Link>
                     
                     {/* Social Media Icons and Contact Button */}
                     <div className="flex items-center space-x-4">
@@ -184,9 +184,9 @@ const Navbar = () => {
                         <a href="#" className="text-white hover:text-pink-500">
                             <i className="fab fa-tiktok"></i>
                         </a>
-                        <button className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600">
+                        <Link to="/contact" className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 text-sm font-medium tracking-wider">
                             CONTACT
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

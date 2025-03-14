@@ -888,15 +888,15 @@ function Home() {
                 
                 <div className={styles.contactItem}>
                   <Phone className="w-6 h-6" />
-                  <span>+91 9876543210</span>
+                  <span>+91 9304604766</span>
                 </div>
                 <div className={styles.contactItem}>
                   <Mail className="w-6 h-6" />
-                  <span>info@chitrasangamstudio.com</span>
+                  <span>chitrasangamstudio@gmail.com</span>
                 </div>
                 <div className={styles.contactItem}>
                   <MapPin className="w-6 h-6" />
-                  <span>123 Photography Lane, Mumbai, Maharashtra 400001</span>
+                  <span>14, Rajeev Nagar Road, opp. Road, Rajeev Nagar, shyam bazar, Patna, Bihar 800024</span>
                 </div>
                 <div className={styles.contactItem}>
                   <Clock className="w-6 h-6" />
@@ -904,13 +904,13 @@ function Home() {
                 </div>
                 
                 <div className={styles.socialLinks}>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+                  <a href="https://www.facebook.com/profile.php?id=100008752236108&ref=ig_profile_ac" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
                     <FaFacebookF />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+                  <a href="https://www.instagram.com/chitrasangamstudio.123?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
                     <FaInstagram />
                   </a>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="YouTube">
+                  <a href="https://www.youtube.com/@chitrasangamstudio5461" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="YouTube">
                     <FaYoutube />
                   </a>
                 </div>
