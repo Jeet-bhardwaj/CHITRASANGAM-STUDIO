@@ -698,7 +698,7 @@ function Home() {
           >
             <div className={styles.profileImage}>
               <img 
-                src="/Images & Videos/HomePhotos/Instagram/profile.jpg" 
+                src="/Images & Videos/About/About_2.jpg" 
                 alt="Chitrasangam Studio" 
                 onError={(e) => {
                   e.currentTarget.src = "https://via.placeholder.com/80";
@@ -778,7 +778,7 @@ function Home() {
                 </div>
                 <div className={styles.instagramEmbed}>
                   <iframe
-                    src="https://www.instagram.com/reel/DDqdZXTTYYU/embed/captioned/"
+                    src="https://www.instagram.com/reel/DE2dd7pJlXV/embed/captioned/"
                     width="100%"
                     height="500"
                     frameBorder="0"
@@ -794,7 +794,7 @@ function Home() {
                     <span><FaComment /> 37</span>
                   </div>
                   <a 
-                    href="https://www.instagram.com/reel/DDqdZXTTYYU/" 
+                    href="https://www.instagram.com/reel/DE2dd7pJlXV/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className={styles.viewOnIg}

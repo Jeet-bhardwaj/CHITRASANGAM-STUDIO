@@ -835,7 +835,7 @@
 .instagramProfileCard {
   display: flex;
   align-items: center;
-  background-color: rgba(168, 0, 252, 0.621);
+  background-color: rgba(236, 72, 154, 0.35);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.05);
